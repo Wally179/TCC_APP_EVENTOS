@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated} from 'react-native';
+import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput} from 'react-native';
 import InputWithIcon from '../../components/InputImage/InputIcon.js'
-import Inputpass from '../../components/Inputpass/Inputpass.js';
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 
@@ -10,7 +9,10 @@ export default function Login() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x:196, y: 178}));
-  
+  const [email, setEmail] =  useState('');
+  const [senha, setSenha] = useState('');
+  const [hidePass, setHidePass] = useState(true);
+
   useEffect(()=> {
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
     keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
@@ -90,9 +92,32 @@ export default function Login() {
       <InputWithIcon
             placeholder='Email'
             autoCorrect={false}
-            onChangeText={()=>{}}
+            Value={email}
+            onChangeText={(texto)=>setEmail(texto)}
             icon="person-circle-sharp" />
-      <Inputpass/>
+      
+
+      <View style={styles.container2}>
+        <View style={styles.inputArea}>
+        <TouchableWithoutFeedback>
+        <Ionicons style={styles.icon} name="lock-closed" size={18} color="#0D9D89" />
+        </TouchableWithoutFeedback>
+            <TextInput 
+            placeholder='Senha' 
+            placeholderTextColor="#666" 
+            style={styles.input}
+            value={senha}
+            onChangeText={(texto) => setSenha(texto)}
+            secureTextEntry={hidePass}
+            />
+            <TouchableOpacity style={styles.icon2} 
+            onPress={ () => setHidePass(!hidePass)}>
+                <Ionicons name={hidePass ? 'eye' : 'eye-off'} color='#0D9D89' size={22}/>
+            </TouchableOpacity>
+        </View>
+    </View>
+
+
       <KeyboardAvoidingView style={styles.esqueceu}>
         <TouchableOpacity style={styles.EsqueceuSenha}>
           <Text style={styles.EsqueceuSenhaText}>Esqueceu sua senha?</Text>
@@ -102,7 +127,6 @@ export default function Login() {
       <TouchableOpacity style={styles.btn}>
         <Text style={styles.btntext}>Entrar</Text>
       </TouchableOpacity>
-      
       
       </Animated.View>
     </Pressable>

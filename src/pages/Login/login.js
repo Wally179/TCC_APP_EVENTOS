@@ -91,7 +91,7 @@ export default function Login() {
       
       <InputWithIcon
             placeholder='Email'
-            autoCorrect={false}
+            autoCorrect={true}
             Value={email}
             onChangeText={(texto)=>setEmail(texto)}
             icon="person-circle-sharp" />

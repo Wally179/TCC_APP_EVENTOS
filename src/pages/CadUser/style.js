@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         container:{
             alignItems: "center",
             width:"90%",
-            marginTop:"20%",
+            marginTop:"25%",
           },
         container2:{
             backgroundColor:"#fff",
@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
         inputArea:{
             flexDirection:'row',
             width:'100%',
-            borderRadius:50,
+            borderRadius:20,
             alignItems:"center",
-            padding:10,
+            paddingLeft:10,
             height:50,
     
         },
@@ -41,21 +41,31 @@ const styles = StyleSheet.create({
         icon: {
             justifyContent:"center",
             alignItems:"center",
-            paddingRight: 25,
-            
+            paddingRight: 20,
+            width: "10%"
           },
           icon2: {
             width:"15%",
             justifyContent:"center",
             alignItems:"center",
             height:50,
+            borderBottomRightRadius:15,
+            borderTopRightRadius:15,
           },
           voltar:{
             position:"absolute",
             left: 25,
-            top:55,
+            top:"7%",
             width:40,
             alignItems:"center",
+          },
+          voltar2:{
+            position:"absolute",
+            left: 'auto',
+            right: 'auto',
+            top: '5%',
+           alignItems:"center",
+           justifyContent:"center",
           },
           btn:{
             backgroundColor:'#0D9D89',
@@ -80,5 +90,20 @@ const styles = StyleSheet.create({
             fontSize:18,
             marginBottom:-10,
           },
+          error:{
+            alignSelf: 'flex-start',
+            color:"#ff375b",
+            marginBottom:8,
+            marginLeft:20,
+            marginTop:-12,
+            fontSize:15,
+          },
+          inputWithIcon:{
+            width:"90%",
+            borderBottomRightRadius:15,
+            borderTopRightRadius:15,
+            height:50,
+            alignSelf:'center',
+          }
     })
 export default styles;

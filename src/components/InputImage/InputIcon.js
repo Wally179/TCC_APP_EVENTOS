@@ -19,7 +19,7 @@ export default class InputWithIcon extends Component {
           <Ionicons style={styles.icon} name={this.props.icon} size={25} color="#666" />
         </TouchableWithoutFeedback>
         <TextInput
-          style={[styles.input, this.props.style]}
+          style={[styles.inputestilo, this.props.style]}
           placeholderTextColor="#666"
           {...this.props}>
         </TextInput>

@@ -8,18 +8,18 @@ const styles = StyleSheet.create({
       color:'#222',
       fontSize:17,
       borderRadius:15,
-      padding:10,
+      paddingLeft:10,
       flexDirection: 'row',
       height:50,
     },
   
     icon: {
       alignSelf: 'center',
-      paddingRight: 20,
+      width:"10%",
       color: "#0D9D89"
     },
   
-    input: {
+    inputestilo: {
       fontSize: 14,
       color: '#666',
       flex: 1

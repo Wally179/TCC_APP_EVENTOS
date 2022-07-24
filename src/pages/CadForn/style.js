@@ -38,6 +38,17 @@ const styles = StyleSheet.create({
             color: '#666',
             height:50,
         },
+        select:{
+          width:'90%',
+          flex:1,
+          fontSize: 14,
+          color: "#666",
+          height:50,
+        },
+        selectItem:{
+          fontSize: 14,
+          
+        },
         icon: {
             justifyContent:"center",
             alignItems:"center",
@@ -79,15 +90,6 @@ const styles = StyleSheet.create({
           btntext:{
             color:"#fff",
             fontSize:18,
-          },
-          btntext2:{
-            color:"#fff",
-            fontSize:15,
-          },
-          textcad:{
-            color: "#fff",
-            fontSize:18,
-            marginBottom:-10,
           },
           error:{
             alignSelf: 'flex-start',

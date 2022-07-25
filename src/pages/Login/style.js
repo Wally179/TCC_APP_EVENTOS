@@ -99,33 +99,49 @@ const styles = StyleSheet.create({
           height:50,
       },
       inputArea:{
-          flexDirection:'row',
-          width:'100%',
-          borderRadius:50,
-          alignItems:"center",
-          padding:10,
-          height:50,
-  
-      },
-      input:{
-          width:'90%',
-          flex:1,
-          fontSize: 14,
-          color: '#666',
-          height:50,
-      },
+        flexDirection:'row',
+        width:'100%',
+        borderRadius:20,
+        alignItems:"center",
+        paddingLeft:10,
+        height:50,
+
+    },
+        input:{
+            width:'90%',
+            flex:1,
+            fontSize: 14,
+            color: '#666',
+            height:50,
+        },
       icon: {
-          justifyContent:"center",
-          alignItems:"center",
-          paddingRight: 25,
-          
-        },
+        justifyContent:"center",
+        alignItems:"center",
+        width: "10%"
+      },
         icon2: {
-          width:"15%",
+          width:"10%",
           justifyContent:"center",
           alignItems:"center",
           height:50,
+          borderBottomRightRadius:15,
+          borderTopRightRadius:15,
         },
+        error:{
+          alignSelf: 'flex-start',
+          color:"#ff375b",
+          marginBottom:8,
+          marginLeft:20,
+          marginTop:-12,
+          fontSize:15,
+        },
+        inputWithIcon:{
+          width:"90%",
+          borderBottomRightRadius:15,
+          borderTopRightRadius:15,
+          height:50,
+          alignSelf:'center',
+        }
       });
 
 export default styles;

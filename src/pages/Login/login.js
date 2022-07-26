@@ -6,6 +6,7 @@ import styles from "./style";
 import { useForm, Controller} from 'react-hook-form'
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
+import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
 const schema = yup.object({
   Fornecedor: yup.string().required("Informe o seu nome"),
   Email: yup.string().email("Email Invalido").required("Informe seu Email"),
@@ -26,7 +27,7 @@ export default function Login() {
   const [email, setEmail] =  useState('');
   const [senha, setSenha] = useState('');
   const [hidePass, setHidePass] = useState(true);
-
+  const navigation = useNavigation()
   useEffect(()=> {
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
     keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
@@ -88,7 +89,7 @@ export default function Login() {
       
       <KeyboardAvoidingView style={styles.viewlogo} >
         <TouchableOpacity style={styles.voltar}>
-        <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" />
+        <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" onPress={() => navigation.navigate('CadForn')} />
         </TouchableOpacity>
 
         <Animated.Image source={require('../../../img/logoapp2.png') } style={{width:logo.x, height:logo.y,}}/>

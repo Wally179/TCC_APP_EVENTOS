@@ -7,7 +7,7 @@ import InputWithIcon from '../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 import {Picker} from '@react-native-picker/picker';
-
+import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
 
 const schema = yup.object({
     Fornecedor: yup.string().required("Informe o seu nome"),
@@ -15,7 +15,7 @@ const schema = yup.object({
     Senha: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
     CNPJ: yup.string().length(14,"Digite um CNPJ valido").required("Informe um CNPJ"),
     Celular: yup.string().min(10,"Digite um telefone valido com DDD").max(11,"Digite um numero valido com DDD Exemplo: 13974209777").required("Informe seu numero"),
-    Categoria: yup.string().required('Selecione 1 categoria')
+    Categoria: yup.string().required('Selecione uma categoria')
 })
 
 
@@ -29,7 +29,8 @@ export default function CadForn() {
    })
     const [hidePass, setHidePass] = useState(true);
     const [opacidade] = useState(new Animated.Value(1));
-    
+    const navigation = useNavigation();
+
     useEffect(()=>{
         keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
         keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
@@ -62,13 +63,13 @@ export default function CadForn() {
     <Animated.View style={[styles.voltar2,{
         opacity: opacidade,
       }]}>
-            <Image source={require('../../../img/logoapp2.png')} style={{width:92, height: 92}}/> 
+            <Image source={require('../../../img/logoapp2.png')} style={{width:92, height: 92}} /> 
     </Animated.View>
     <Animated.View style={[styles.voltar,{
         opacity: opacidade,
       }]}>
             <TouchableOpacity>
-                <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" />    
+                <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" onPress={() => navigation.navigate('Caduser')} />    
             </TouchableOpacity>
     </Animated.View>
 <KeyboardAvoidingView style={[styles.container, ]}>

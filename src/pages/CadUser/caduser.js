@@ -6,6 +6,8 @@ import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, Stat
 import InputWithIcon from '../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
+import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
+
 
 const schema = yup.object({
     Username: yup.string().required("Informe o seu nome"),
@@ -20,7 +22,7 @@ const schema = yup.object({
 
 
 export default function Caduser() {
-   
+   const navigation = useNavigation()
    const { control, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
    })
@@ -59,7 +61,7 @@ export default function Caduser() {
     <Animated.View style={[styles.voltar2,{
         opacity: opacidade,
       }]}>
-            <Image source={require('../../../img/logoapp2.png')} style={{width:92, height: 92}}/> 
+            <Image source={require('../../../img/logoapp2.png')} style={{width:92, height: 92}} /> 
     </Animated.View>
     <Animated.View style={[styles.voltar,{
         opacity: opacidade,
@@ -165,7 +167,7 @@ export default function Caduser() {
         <Text style={styles.btntext}>Registrar</Text>
     </TouchableOpacity>
     <Text style={styles.textcad}>Voce trabalha com festas?</Text>
-    <TouchableOpacity style={styles.btn} >
+    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CadForn')}>
         <Text style={styles.btntext}>Criar uma conta fornecedora</Text>
     </TouchableOpacity>
 </KeyboardAvoidingView>

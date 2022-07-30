@@ -8,12 +8,8 @@ import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
 import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
 const schema = yup.object({
-  Fornecedor: yup.string().required("Informe o seu nome"),
   Email: yup.string().email("Email Invalido").required("Informe seu Email"),
   Senha: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
-  CNPJ: yup.string().length(14,"Digite um CNPJ valido").required("Informe um CNPJ"),
-  Celular: yup.string().min(10,"Digite um telefone valido com DDD").max(11,"Digite um numero valido com DDD Exemplo: 13974209777").required("Informe seu numero"),
-  Categoria: yup.string().required('Selecione uma categoria')
 })
 
 
@@ -24,8 +20,6 @@ export default function Login() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x:196, y: 178}));
-  const [email, setEmail] =  useState('');
-  const [senha, setSenha] = useState('');
   const [hidePass, setHidePass] = useState(true);
   const navigation = useNavigation()
   useEffect(()=> {
@@ -89,7 +83,7 @@ export default function Login() {
       
       <KeyboardAvoidingView style={styles.viewlogo} >
         <TouchableOpacity style={styles.voltar}>
-        <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" onPress={() => navigation.navigate('CadForn')} />
+        <Ionicons name="ios-arrow-back-circle" size={45} color="#fff"  />
         </TouchableOpacity>
 
         <Animated.Image source={require('../../../img/logoapp2.png') } style={{width:logo.x, height:logo.y,}}/>
@@ -116,7 +110,7 @@ export default function Login() {
             autoCorrect={true}
             value={value}
             onChangeText={onChange}
-            icon="ios-mail"
+            icon="person-circle-sharp"
             style={ [styles.inputWithIcon, {borderWidth:errors.Email && 1, borderColor: errors.Email && '#ff375b', padding: errors.Email && 5,}]} />
        )}
    />
@@ -151,7 +145,7 @@ export default function Login() {
 
 
       <KeyboardAvoidingView style={styles.esqueceu}>
-        <TouchableOpacity style={styles.EsqueceuSenha}>
+        <TouchableOpacity style={styles.EsqueceuSenha} onPress={() => navigation.navigate('EsqSenha')}>
           <Text style={styles.EsqueceuSenhaText}>Esqueceu sua senha?</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>

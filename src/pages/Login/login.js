@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput} from 'react-native';
+import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, BackHandler} from 'react-native';
 import InputWithIcon from '../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
@@ -25,6 +25,10 @@ export default function Login() {
   useEffect(()=> {
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
     keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true
+    })
+    
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,

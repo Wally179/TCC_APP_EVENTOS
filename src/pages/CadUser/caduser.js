@@ -6,7 +6,7 @@ import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, Stat
 import InputWithIcon from '../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
-import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
 
 
 const schema = yup.object({

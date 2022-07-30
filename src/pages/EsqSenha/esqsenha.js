@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput} from 'react-native';
+import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, BackHandler} from 'react-native';
 import InputWithIcon from '../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
-import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native'
 import { useForm, Controller} from 'react-hook-form'
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
@@ -22,13 +22,14 @@ export default function EsqSenha () {
     const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
     const [opacity] = useState(new Animated.Value(0));
     const [logo] = useState(new Animated.ValueXY({x:196, y: 178}));
-    const [email, setEmail] =  useState('');
-    const [senha, setSenha] = useState('');
     const [hidePass, setHidePass] = useState(true);
   
     useEffect(()=> {
       keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
       keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+      BackHandler.addEventListener('hardwareBackPress', () => {
+        return navigation.navigate('Login')
+      })
       Animated.parallel([
         Animated.spring(offset.y, {
           toValue: 0,
@@ -76,7 +77,7 @@ export default function EsqSenha () {
     }
     function cadastroFor(data){
       console.log(data);
-      alert('Confira o email registrado as proximas etapas de recuperação');
+      alert('Confira no email registrado as proximas etapas de recuperação');
       navigation.navigate('Login');
   }
     return (

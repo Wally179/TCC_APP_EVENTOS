@@ -7,7 +7,7 @@ import InputWithIcon from '../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 import {Picker} from '@react-native-picker/picker';
-import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native'
 
 const schema = yup.object({
     Fornecedor: yup.string().required("Informe o seu nome"),

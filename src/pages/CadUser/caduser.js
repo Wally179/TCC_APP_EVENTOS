@@ -66,7 +66,7 @@ export default function Caduser() {
     <Animated.View style={[styles.voltar,{
         opacity: opacidade,
       }]}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('TelaInicial')} >
                 <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" />    
             </TouchableOpacity>
     </Animated.View>

@@ -27,9 +27,6 @@ export default function EsqSenha () {
     useEffect(()=> {
       keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
       keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-      BackHandler.addEventListener('hardwareBackPress', () => {
-        return navigation.navigate('Login')
-      })
       Animated.parallel([
         Animated.spring(offset.y, {
           toValue: 0,
@@ -87,8 +84,8 @@ export default function EsqSenha () {
        
         
         <KeyboardAvoidingView style={styles.viewlogo} >
-          <TouchableOpacity style={styles.voltar}>
-          <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" onPress={() => navigation.navigate('Login')}/>
+          <TouchableOpacity style={styles.voltar} onPress={() => navigation.navigate('Login')}>
+          <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" />
           </TouchableOpacity>
   
           <Animated.Image source={require('../../../img/logoapp2.png') } style={{ width:logo.x, height:logo.y,}}/>

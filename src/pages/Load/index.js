@@ -6,6 +6,6 @@ import {useNavigation} from '@react-navigation/native';
 export default function Splash() {
     const navigation = useNavigation()
   return (
-    <Lottie source={require('../../../img/Load.json')} autoPlay loop={false} onAnimationFinish={() => navigation.navigate('Login')} style={styles.fundo}/>
+    <Lottie source={require('../../../img/Load.json')} autoPlay loop={false} onAnimationFinish={() => navigation.navigate('TelaInicial')} style={styles.fundo}/>
   );
 }

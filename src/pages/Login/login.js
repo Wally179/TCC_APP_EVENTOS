@@ -24,11 +24,7 @@ export default function Login() {
   const navigation = useNavigation()
   useEffect(()=> {
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-    BackHandler.addEventListener('hardwareBackPress', () => {
-      return true
-    })
-    
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);   
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -86,8 +82,8 @@ export default function Login() {
      
       
       <KeyboardAvoidingView style={styles.viewlogo} >
-        <TouchableOpacity style={styles.voltar}>
-        <Ionicons name="ios-arrow-back-circle" size={45} color="#fff"  />
+        <TouchableOpacity style={styles.voltar} onPress={() => navigation.navigate('TelaInicial')} >
+        <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" />
         </TouchableOpacity>
 
         <Animated.Image source={require('../../../img/logoapp2.png') } style={{width:logo.x, height:logo.y,}}/>

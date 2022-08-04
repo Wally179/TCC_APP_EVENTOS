@@ -68,8 +68,8 @@ export default function CadForn() {
     <Animated.View style={[styles.voltar,{
         opacity: opacidade,
       }]}>
-            <TouchableOpacity>
-                <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" onPress={() => navigation.navigate('Caduser')} />    
+            <TouchableOpacity onPress={() => navigation.navigate('Caduser')}>
+                <Ionicons name="ios-arrow-back-circle" size={45} color="#fff"  />    
             </TouchableOpacity>
     </Animated.View>
 <KeyboardAvoidingView style={[styles.container, ]}>

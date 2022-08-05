@@ -5,14 +5,22 @@ const styles = StyleSheet.create({
         backgroundColor:"#31B1B9"
       },
       superior:{
-        height:"30%",
+        height:"35%",
        
       },
       container:{
         backgroundColor: "#E8F6F7",
-        height:"70%",
+        height:"65%",
         borderTopLeftRadius:50,
         borderTopRightRadius:50,
+        shadowColor: "#000",
+        shadowOffset:{
+        width: 0,
+        height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+        elevation: 24,
       },
       categoria:{
         position:'absolute',
@@ -48,6 +56,9 @@ const styles = StyleSheet.create({
         width:'85%',
         height:"100%",
       },
+      seach: {
+        width:'15%',     
+      },
       linha: {
         marginTop:"10%",
         width:"100%",
@@ -57,12 +68,11 @@ const styles = StyleSheet.create({
         paddingLeft:"4%"
       },
       menu: {
-        width:"35%",
+        width:"20%",
         flexDirection: 'row-reverse',
       },
       icon: {
-        width:"35%",
-        left:"125%"
+        width:"65%",
       }
       
 });

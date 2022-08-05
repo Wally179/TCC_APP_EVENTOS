@@ -29,7 +29,7 @@ export default function Init() {
                       placeholderTextColor="#E8F6F7"
                       style={styles.input}
                 ></TextInput>
-                <TouchableOpacity>
+                <TouchableOpacity style={styles.seach}>
                   <Ionicons name={'md-search'} size={28} color="#E8F6F7" />
                 </TouchableOpacity>
               </View>

@@ -12,7 +12,7 @@ const { Navigator, Screen} = createNativeStackNavigator()
 
 export default function(){
     return(
-        <Navigator initialRouteName='Splash' screenOptions={{headerShown: false}}>
+        <Navigator initialRouteName='Init' screenOptions={{headerShown: false}}>
             <Screen name="Login" component={Login}/>
             <Screen name="Caduser" component={Caduser}/>
             <Screen name="CadForn" component={CadForn}/>

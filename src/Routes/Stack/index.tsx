@@ -1,13 +1,13 @@
 import * as React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
-import Login from '../../pages/Login/login';
-import Caduser from '../../pages/CadUser/caduser';
-import CadForn from '../../pages/CadForn/cadforn';
-import EsqSenha from '../../pages/EsqSenha/esqsenha';
-import Splash from '../../pages/Load';
-import Init from '../../pages/Init';
-import TelaInicial from '../../pages/Inicio/inicio';
+import Login from '../../pages/Cadastro/Login/login';
+import Caduser from '../../pages/Cadastro/CadUser/caduser';
+import CadForn from '../../pages/Cadastro/CadForn/cadforn';
+import EsqSenha from '../../pages/Cadastro/EsqSenha/esqsenha';
+import Splash from '../../pages/Cadastro/Load';
+import Init from '../../pages/User/Init';
+import TelaInicial from '../../pages/Cadastro/Inicio/inicio';
 const { Navigator, Screen} = createNativeStackNavigator()
 
 export default function(){

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, BackHandler} from 'react-native';
-import InputWithIcon from '../../components/InputImage/InputIcon.js'
+import InputWithIcon from '../../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 import {useNavigation} from '@react-navigation/native'
@@ -88,7 +88,7 @@ export default function EsqSenha () {
           <Ionicons name="ios-arrow-back-circle" size={45} color="#fff" />
           </TouchableOpacity>
   
-          <Animated.Image source={require('../../../img/logoapp2.png') } style={{ width:logo.x, height:logo.y,}}/>
+          <Animated.Image source={require('../../../../img/logoapp.png') } style={{ width:logo.x, height:logo.y,}}/>
 
         <Text style={styles.Textnome}>Recupere sua conta</Text>
         <Text style = {styles.Textfrase}> Insire seu email ou telefone vinculado a sua conta</Text>

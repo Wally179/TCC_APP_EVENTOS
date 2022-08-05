@@ -3,7 +3,7 @@ import { useForm, Controller} from 'react-hook-form'
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
 import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, Image} from 'react-native';
-import InputWithIcon from '../../components/InputImage/InputIcon.js'
+import InputWithIcon from '../../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 import {Picker} from '@react-native-picker/picker';
@@ -63,7 +63,7 @@ export default function CadForn() {
     <Animated.View style={[styles.voltar2,{
         opacity: opacidade,
       }]}>
-            <Image source={require('../../../img/logoapp2.png')} style={{width:92, height: 92}} /> 
+            <Image source={require('../../../../img/logoapp.png')} style={{width:92, height: 92}} /> 
     </Animated.View>
     <Animated.View style={[styles.voltar,{
         opacity: opacidade,

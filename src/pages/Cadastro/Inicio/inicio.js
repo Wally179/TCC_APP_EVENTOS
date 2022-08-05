@@ -8,7 +8,7 @@ export default function TelaInicial () {
     return (
         <View style={styles.fundo}>
             <View style={styles.Logo}>
-                <Image source={require('../../../img/logoapp2.png')}/>
+                <Image source={require('../../../../img/logoapp.png')}/>
 
                 <Text style={styles.Textnome}>Clube de Luta Infantil</Text>
                 <Text style = {styles.Textfrase}>Seja Bem Vindo ao Clube de Luta Infantil</Text>

@@ -1,16 +1,14 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     fundo:{
-        flex:1,
-        backgroundColor:"#31B1B9"
+        backgroundColor:"#31B1B9",
+        flex: 1,
       },
       superior:{
-        height:"35%",
-       
+        
       },
       container:{
         backgroundColor: "#E8F6F7",
-        height:"65%",
         borderTopLeftRadius:50,
         borderTopRightRadius:50,
         shadowColor: "#000",
@@ -21,12 +19,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
         elevation: 24,
+
       },
       categoria:{
-        position:'absolute',
         fontSize: 20,
-        top:"4%",
-        left:"5%",
         fontWeight:'bold',
         color: "#31B1B9"
       },
@@ -73,6 +69,32 @@ const styles = StyleSheet.create({
       },
       icon: {
         width:"65%",
+      },
+      horizontal:{
+        width:100,
+        height:100,
+        marginHorizontal:10,
+        backgroundColor:'#E8F6F7',
+        justifyContent:'center',
+        alignItems:"center",
+        shadowColor: "#000",
+        shadowOffset:{
+        width: 0,
+        height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+        elevation: 24,
+      },
+      center:{
+        color:'#31B1B9',
+        fontWeight:'bold',
+      },
+      categoriatxt:{
+        color:'#fff',
+        fontSize: 20,
+        fontWeight:'bold',
+        margin:"3%"
       }
       
 });

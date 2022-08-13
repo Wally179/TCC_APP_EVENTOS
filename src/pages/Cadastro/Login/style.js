@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         container:{
           flex:1,
           alignItems: "center",
-          width:"90%",
+          width:"95%",
           marginTop:-40,
         },
         input:{
@@ -46,19 +46,10 @@ const styles = StyleSheet.create({
         },
         textlogo:{
           fontStyle: "normal",
-          fontSize: 20,
-          lineHeight: 30,
+          fontSize: 19,
+          lineHeight: 29,
           color: "#E8F6F7",
           paddingBottom:10,
-        },
-        EsqueceuSenha:{
-          width:"50%",
-          alignItems:"flex-end",
-          justifyContent:"center",
-          padding:10,
-        },
-        EsqueceuSenhaText:{
-          color: "#E8F6F7",
         },
         Textnome:{
           fontStyle: "normal",
@@ -74,6 +65,15 @@ const styles = StyleSheet.create({
           lineHeight: 20,
           color: "#E8F6F7",
           width:"75%",
+        },
+        EsqueceuSenha:{
+          width:"65%",
+          alignItems:"flex-end",
+          justifyContent:"center",
+          padding:5,
+        },
+        EsqueceuSenhaText:{
+          color: "#E8F6F7",
         },
         esqueceu:{
           width:"90%",

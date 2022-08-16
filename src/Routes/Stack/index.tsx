@@ -8,11 +8,12 @@ import EsqSenha from '../../pages/Cadastro/EsqSenha/esqsenha';
 import Splash from '../../pages/Cadastro/Load';
 import Init from '../../pages/User/Init';
 import TelaInicial from '../../pages/Cadastro/Inicio/inicio';
+import Detalhes from '../../pages/User/Detalhes';
 const { Navigator, Screen} = createNativeStackNavigator()
 
 export default function(){
     return(
-        <Navigator initialRouteName='Splash' screenOptions={{headerShown: false}}>
+        <Navigator initialRouteName='Init' screenOptions={{headerShown: false}}>
             <Screen name="Login" component={Login}/>
             <Screen name="Caduser" component={Caduser}/>
             <Screen name="CadForn" component={CadForn}/>
@@ -20,6 +21,7 @@ export default function(){
             <Screen name="Splash" component={Splash}/>
             <Screen name="Init" component={Init}/>
             <Screen name="TelaInicial" component={TelaInicial}/>
+            <Screen name="Detalhes" component={Detalhes}/>
         </Navigator>
     )
 }

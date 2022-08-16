@@ -23,21 +23,21 @@ export default function Init() {
         { id: 9, full_name: 'Pedro 8 a volta dos que nunca foi', Rate: '3', img: require('../../../../img/logoapp.png'), conteudo: 'Pedro', min: "R$40", max: "R$150"},
         { id: 10, full_name: 'Pedro 9 a volta dos que nunca foi', Rate: '3', img: require('../../../../img/logoapp.png'), conteudo: 'Pedro', min: "R$40", max: "R$150"},
       ]);
-      const [selectedId, setSelectedId] = useState(null);
 
-
-
+      const [selecionado, setSelecionado] = useState("Buffet");
       const [op, setOp] = useState([
-        {id:1, cate:'Fotografia', ico:'camera'},
-        {id:2, cate:'Decoração',ico:'balloon'},
-        {id:3, cate:'Buffet',ico:'cake'},
+        {id:1, cate:'Buffet',ico:'cake'},  
+        {id:2, cate:'Fotografia', ico:'camera'},
+        {id:3, cate:'Decoração',ico:'balloon'},
         {id:4, cate:'Local',ico:'warehouse'},
         {id:5, cate:'Diversão',ico:'party-popper'},
       ]);
 
     const [scrollY, setScrollY] =useState(new Animated.Value(0))
 
-
+      function mudarCategoria(){
+        return 
+      }
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.fundo}>
           <Animated.View style={[styles.superior,
@@ -71,15 +71,14 @@ export default function Init() {
                 </TouchableOpacity>
               </View>
             </View>
-            <Text style={styles.categoriatxt}>Categorias</Text>
+            <Text style={styles.categoriatxt}>Categoria</Text>
             <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
               data={op}
-              extraData={selectedId}
               keyExtractor={item => String(item.id)}
               renderItem={({ item }) => 
-              <TouchableOpacity style={styles.horizontal} onPress={() => setSelectedId(item.id)}>
+              <TouchableOpacity style={styles.horizontal} onPress={ () => {mudarCategoria(),setSelecionado(item.cate)}}>
                 <MaterialCommunityIcons name={item.ico} size={40} color="#31B1B9" />
                 <Text style={styles.center}>{item.cate}</Text>
               </TouchableOpacity>
@@ -91,7 +90,7 @@ export default function Init() {
        
           <FlatList
           style={styles.container}
-          ListHeaderComponent={<Text style={styles.categoria}>Categoria</Text>}
+          ListHeaderComponent={<Text style={styles.categoria}>{selecionado}</Text>}
           ListHeaderComponentStyle={{marginTop: 45}}
           contentContainerStyle={{ marginHorizontal: 20}}
           data={data}

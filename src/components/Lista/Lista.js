@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import styles from "./style";
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Lista({data}) {
+    const navigation = useNavigation();  
+    const IDforn = data.id  
     return (
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Detalhes',{IDforn})}>
             <View style={styles.linha}>
                 <Text style={styles.textItem}>{data.full_name}</Text>
                 <View style={styles.Rate}>

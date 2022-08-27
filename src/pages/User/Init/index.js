@@ -36,7 +36,6 @@ export default function Init() {
     const [scrollY, setScrollY] =useState(new Animated.Value(0))
 
       function mudarCategoria(){
-        return 
       }
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.fundo}>

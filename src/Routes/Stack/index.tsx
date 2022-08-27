@@ -9,6 +9,8 @@ import Splash from '../../pages/Cadastro/Load';
 import Init from '../../pages/User/Init';
 import TelaInicial from '../../pages/Cadastro/Inicio/inicio';
 import Detalhes from '../../pages/User/Detalhes';
+import Catalogo from '../../pages/User/Catalogo';
+
 const { Navigator, Screen} = createNativeStackNavigator()
 
 export default function(){
@@ -22,6 +24,7 @@ export default function(){
             <Screen name="Init" component={Init}/>
             <Screen name="TelaInicial" component={TelaInicial}/>
             <Screen name="Detalhes" component={Detalhes}/>
+            <Screen name="Catalogo" component={Catalogo}/>
         </Navigator>
     )
 }

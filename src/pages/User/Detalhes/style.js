@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       linha1:{
         width:"100%",
         height:'20%',
-        marginTop:"10%",
+        marginTop:"5%",
         paddingHorizontal:15,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor:"#E8F6F7",
         borderRadius:10,
         justifyContent:"center",
+        alignSelf: 'center',
         alignItems:"center",
         shadowColor: "#000",
         shadowOffset:{
@@ -38,20 +39,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:15,
         flexDirection: 'row',
       },
-      slide: {
-        width:'40%',
-        height:'95%',
-        backgroundColor:'#2D9BDA',
-        borderRadius:15,
-        shadowColor: "#2D9BDA",
-        shadowOffset:{
-        width: 0,
-        height: 7,
-        },
-        shadowOpacity: 0.43,
-        shadowRadius: 9.51,
-        elevation: 15,
-      },
+     
       infos: {
         width:'60%',
         height:'95%',
@@ -152,6 +140,22 @@ const styles = StyleSheet.create({
       width:'100%',
       height:200,
       marginTop:5,
+    },
+    ImagemSlide:{
+      maxWidth:'100%',
+      height:'95%',
+      borderRadius:15,
+      },
+    slide: {
+      maxWidth:"100%",
+      height:'100%',   
+    },
+    containerslide: {
+      width:'40%',
+      marginBottom:10,
+      alignItems:"center",
+      justifyContent:"center",
+      alignSelf: 'center',
     }
 });
 

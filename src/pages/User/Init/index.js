@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text, Pressable, Keyboard,TextInput, TouchableOpacity,Animated, SafeAreaView } from 'react-native';
+import { View, FlatList, Text, Pressable, Keyboard,TextInput, TouchableOpacity,Animated, Dimensions } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Lista from '../../../components/Lista/Lista';
 import styles from "./style";
+
+const {height,width} = Dimensions.get('screen');
+
 
 export default function Init() {
     const navigation = useNavigation();

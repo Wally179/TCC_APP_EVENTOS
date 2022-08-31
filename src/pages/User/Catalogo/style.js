@@ -40,8 +40,12 @@ const styles = StyleSheet.create({
         color: "#E8F6F7",
         alignSelf: 'center'
       },
+      serviço:{
+        fontSize: 20,
+        lineHeight: 20,
+        color: "#31B1B9",
+      },
       container:{
-
         backgroundColor: "#E8F6F7",
         borderTopLeftRadius:50,
         borderTopRightRadius:50,
@@ -53,9 +57,42 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.58,
         shadowRadius: 16.00,
         elevation: 24,
-        
-
+        height:'100%'
       },
+      flat:{
+        marginTop:15,
+      },
+      botao:{
+        position:'absolute',
+        width:'100%',
+        height:70,
+        backgroundColor:'#585CE5',
+        bottom:0,
+        flexDirection: 'row',
+        alignItems:"center",
+        paddingHorizontal:15,
+      },
+      btntxt:{
+        fontSize: 18,
+        lineHeight: 24,
+        color: "#E8F6F7",
+        alignSelf: 'center'
+      },
+      btntxt2:{
+        fontSize: 20,
+        lineHeight: 24,
+        color: "#E8F6F7",
+        alignSelf: 'center'
+      },
+      bloco:{
+        width:'20%'
+      },
+      bloco2:{
+        width:'60%'
+      },
+      bloco3:{
+        width:'20%'
+      }
 });
 
 export default styles;

@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
         color:"#E8F6F7",
         width:"80%",
         top:12,
-      }
+      },
+
 });
 
 export default styles;

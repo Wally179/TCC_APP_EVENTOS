@@ -10,12 +10,14 @@ import Init from '../../pages/User/Init';
 import TelaInicial from '../../pages/Cadastro/Inicio/inicio';
 import Detalhes from '../../pages/User/Detalhes';
 import Catalogo from '../../pages/User/Catalogo';
+import Forn from '../../pages/Forn/Inicial';
+
 
 const { Navigator, Screen} = createNativeStackNavigator()
 
 export default function(){
     return(
-        <Navigator initialRouteName='Init' screenOptions={{headerShown: false}}>
+        <Navigator initialRouteName='Forn' screenOptions={{headerShown: false}}>
             <Screen name="Login" component={Login}/>
             <Screen name="Caduser" component={Caduser}/>
             <Screen name="CadForn" component={CadForn}/>
@@ -25,6 +27,7 @@ export default function(){
             <Screen name="TelaInicial" component={TelaInicial}/>
             <Screen name="Detalhes" component={Detalhes}/>
             <Screen name="Catalogo" component={Catalogo}/>
+            <Screen name="Forn" component={Forn}/>
         </Navigator>
     )
 }

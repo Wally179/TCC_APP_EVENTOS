@@ -10,7 +10,7 @@ export default function Cata({data}) {
     
     const navigation = useNavigation(); 
     return (
-        <TouchableOpacity style={[styles.item,{width:width/2, height:height/3}]}>
+        <TouchableOpacity style={[styles.item,{width:'100%', height:'auto'}]}>
             <View style={styles.linha}>
                 <View style={styles.container}>
                     <Text style={styles.titulo}>{data.produto}</Text>

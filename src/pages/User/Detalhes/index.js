@@ -1,5 +1,5 @@
 import React, { useState,  useEffect} from 'react';
-import { Text, Image, TouchableOpacity, SafeAreaView, View,ScrollView, PermissionsAndroid } from 'react-native';
+import { Text, Image, TouchableOpacity, SafeAreaView, View,ScrollView, Dimensions } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from "./style";
 import { Ionicons } from '@expo/vector-icons';
@@ -37,7 +37,8 @@ export default function Detalhes({route}) {
         }
     })();
 },[]); */
-  const slides= [
+const {height,width} = Dimensions.get('screen'); 
+const slides= [
     {
       image: require('../../../../img/comidinhas.jpg')
     },
@@ -70,8 +71,8 @@ export default function Detalhes({route}) {
               layout='tinder'
               layoutCardOffset={10}
               data={slides}
-              sliderWidth={200}
-              itemWidth={150}
+              sliderWidth={width/2.7}
+              itemWidth={width/2.7}
               renderItem={renderItem}
               loop
               ></Carousel>

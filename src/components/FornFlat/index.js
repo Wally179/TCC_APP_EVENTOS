@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 export default function AndaForn({opi}) {
     const navigation = useNavigation(); 
     return (
-        <TouchableOpacity style={[styles.item,{width:width*0.9, height:height/5}]}>
+        <TouchableOpacity style={[styles.item,{width:width*0.9, height:height/5}]} onPress={() => navigation.navigate('DetalhesForn')}>
           <View style={styles.linha}>
               <Image source={require('../../../img/comidinhas.jpg')} style={{width:70, height:70, borderRadius:20}}/>
               <View style={styles.titulo}>

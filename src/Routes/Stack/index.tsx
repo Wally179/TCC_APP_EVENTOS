@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-
 import Login from '../../pages/Cadastro/Login/login';
 import Caduser from '../../pages/Cadastro/CadUser/caduser';
 import CadForn from '../../pages/Cadastro/CadForn/cadforn';
@@ -11,13 +10,15 @@ import TelaInicial from '../../pages/Cadastro/Inicio/inicio';
 import Detalhes from '../../pages/User/Detalhes';
 import Catalogo from '../../pages/User/Catalogo';
 import Forn from '../../pages/Forn/Inicial';
+import DetalhesForn from '../../pages/Forn/Detalhes';
+import AceitarDetalhes from '../../pages/Forn/AceitarDetalhes';
 
 
 const { Navigator, Screen} = createNativeStackNavigator()
 
 export default function(){
     return(
-        <Navigator initialRouteName='Forn' screenOptions={{headerShown: false}}>
+        <Navigator initialRouteName='Init' screenOptions={{headerShown: false}}>
             <Screen name="Login" component={Login}/>
             <Screen name="Caduser" component={Caduser}/>
             <Screen name="CadForn" component={CadForn}/>
@@ -28,6 +29,8 @@ export default function(){
             <Screen name="Detalhes" component={Detalhes}/>
             <Screen name="Catalogo" component={Catalogo}/>
             <Screen name="Forn" component={Forn}/>
+            <Screen name="DetalhesForn" component={DetalhesForn}/>
+            <Screen name="AceitarDetalhes" component={AceitarDetalhes}/>
         </Navigator>
     )
 }

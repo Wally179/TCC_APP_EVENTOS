@@ -2,19 +2,20 @@ import React, {useState, useEffect} from 'react'
 import { useForm, Controller} from 'react-hook-form'
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
-import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, Image} from 'react-native';
+import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, Image, Alert} from 'react-native';
 import InputWithIcon from '../../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 import {useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 
 
 const schema = yup.object({
-    Username: yup.string().required("Informe o seu nome"),
-    Email: yup.string().email("Email Invalido").required("Informe seu Email"),
-    Senha: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
-    CPF: yup.string().length(11,"Digite um CPF valido").required("Informe um CPF"),
-    Celular: yup.string().min(10,"Digite um telefone valido com DDD").max(11,"Digite um numero valido com DDD Exemplo: 13974209777").required("Informe seu numero"),
+    Nome_usuario: yup.string().required("Informe o seu nome"),
+    Email_usuario: yup.string().email("Email Invalido").required("Informe seu Email"),
+    senha_usuario: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
+    Cpf_usuario: yup.string().length(11,"Digite um CPF valido").required("Informe um CPF"),
+    Celular_usuario: yup.string().min(10,"Digite um telefone valido com DDD").max(11,"Digite um numero valido com DDD Exemplo: 13974209777").required("Informe seu numero"),
 })
 
 
@@ -28,7 +29,24 @@ export default function Caduser() {
    })
     const [hidePass, setHidePass] = useState(true);
     const [opacidade] = useState(new Animated.Value(1));
+
+
+     async function cadastroUser(data){ 
+        try {
+         await axios.post('http://192.168.15.90:3000/api/usuario', data)
+            alert('Usuario Cadastrado')
+            navigation.navigate('Login')
+        } catch (errors) {
+            console.log('erro: ', errors)
+            console.log(' ')
+            console.log('Esta sendo enviado:', data)
+        }
+        
+    return data;
     
+        
+    }
+
     useEffect(()=>{
         keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
         keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
@@ -50,9 +68,6 @@ export default function Caduser() {
         }).start()
     }
 
-    function cadastroUser(data){
-        console.log(data);
-    }
 
     return (
     
@@ -74,7 +89,7 @@ export default function Caduser() {
    
    <Controller
    control={control}
-   name='Username'
+   name='Nome_usuario'
    render={({ field: {onChange, value}}) => (
     <InputWithIcon 
     placeholder='Nome do usuario'
@@ -82,14 +97,14 @@ export default function Caduser() {
     value={value}
     onChangeText={onChange}
     icon="person-circle-sharp"
-    style={ [styles.inputWithIcon,{borderWidth:errors.Username && 1, borderColor: errors.Username && '#ff375b', padding: errors.Username && 5,}]} />
+    style={ [styles.inputWithIcon,{borderWidth:errors.Nome_usuario && 1, borderColor: errors.Nome_usuario && '#ff375b', padding: errors.Nome_usuario && 5,}]} />
    )}
    />
-    {errors.Username && <Text style={styles.error}>{errors.Username?.message}</Text>}
+    {errors.Nome_usuario && <Text style={styles.error}>{errors.Nome_usuario?.message}</Text>}
 
     <Controller
    control={control}
-   name='Email'
+   name='Email_usuario'
    render={({ field: {onChange, value}}) => (
     <InputWithIcon 
     placeholder='Email'
@@ -97,13 +112,15 @@ export default function Caduser() {
     value={value}
     onChangeText={onChange}
     icon="ios-mail"
-    style={ [styles.inputWithIcon, {borderWidth:errors.Email && 1, borderColor: errors.Email && '#ff375b', padding: errors.Email && 5,}]} />
+    style={ [styles.inputWithIcon, {borderWidth:errors.Email_usuario && 1, borderColor: errors.Email_usuario && '#ff375b', padding: errors.Email_usuario && 5,}]} />
        )}
    />
-   {errors.Email && <Text style={styles.error}>{errors.Email?.message}</Text>}
-       <Controller
+   {errors.Email_usuario && <Text style={styles.error}>{errors.Email_usuario?.message}</Text>}
+
+   
+    <Controller
     control={control}
-    name='Senha'
+    name='senha_usuario'
     render={({ field: {onChange, value}}) => (
         <View style={styles.container2}>
             <View style={styles.inputArea}>
@@ -113,13 +130,13 @@ export default function Caduser() {
                 <TextInput 
                 placeholder='Senha' 
                 placeholderTextColor="#666" 
-                style={[styles.input, {borderBottomWidth:errors.Senha && 1, borderTopWidth:errors.Senha && 1, borderLeftWidth:errors.Senha && 1, borderColor: errors.Senha && '#ff375b', padding: errors.Senha && 5,}]}
+                style={[styles.input, {borderBottomWidth:errors.senha_usuario && 1, borderTopWidth:errors.senha_usuario && 1, borderLeftWidth:errors.senha_usuario && 1, borderColor: errors.senha_usuario && '#ff375b', padding: errors.senha_usuario && 5,}]}
                 value={value}
                 onChangeText={onChange}
                 secureTextEntry={hidePass}
                 
                 />
-                <TouchableOpacity style={[styles.icon2,  {borderBottomWidth:errors.Senha && 1, borderTopWidth:errors.Senha && 1, borderRightWidth:errors.Senha && 1, borderColor: errors.Senha && '#ff375b'}]} 
+                <TouchableOpacity style={[styles.icon2,  {borderBottomWidth:errors.senha_usuario && 1, borderTopWidth:errors.senha_usuario && 1, borderRightWidth:errors.senha_usuario && 1, borderColor: errors.senha_usuario && '#ff375b'}]} 
                 onPress={ () => setHidePass(!hidePass)}>
                     <Ionicons name={hidePass ? 'eye' : 'eye-off'} color='#0D9D89' size={22}/>
                 </TouchableOpacity>
@@ -127,12 +144,12 @@ export default function Caduser() {
         </View>
                )}
                />
-        {errors.Senha && <Text style={styles.error}>{errors.Senha?.message}</Text>}
-
+        {errors.senha_usuario && <Text style={styles.error}>{errors.senha_usuario?.message}</Text>}
+   
 
     <Controller
     control={control}
-    name='Celular'
+    name='Celular_usuario'
     render={({ field: {onChange, value}}) => (
         <InputWithIcon 
         placeholder='Celular'
@@ -141,14 +158,14 @@ export default function Caduser() {
         value={value}
         onChangeText={onChange}
         keyboardType="numeric" 
-        style={ [styles.inputWithIcon, {borderWidth:errors.Celular && 1, borderColor: errors.Celular && '#ff375b', padding: errors.Celular && 5,}]}/>
+        style={ [styles.inputWithIcon, {borderWidth:errors.Celular_usuario && 1, borderColor: errors.Celular_usuario && '#ff375b', padding: errors.Celular_usuario && 5,}]}/>
         )}
         />
-    {errors.Celular && <Text style={styles.error}>{errors.Celular?.message}</Text>}
+    {errors.Celular_usuario && <Text style={styles.error}>{errors.Celular_usuario?.message}</Text>}
     
-    <Controller
+     <Controller
     control={control}
-    name='CPF'
+    name='Cpf_usuario'
     render={({ field: {onChange, value}}) => (
     <InputWithIcon 
     placeholder='CPF'
@@ -157,12 +174,13 @@ export default function Caduser() {
     value={value}
     onChangeText={onChange}
    keyboardType="numeric" 
-   style={ [styles.inputWithIcon, {borderWidth:errors.CPF && 1, borderColor: errors.CPF && '#ff375b', padding: errors.CPF && 5,}]}
+   style={ [styles.inputWithIcon, {borderWidth:errors.Cpf_usuario && 1, borderColor: errors.Cpf_usuario && '#ff375b', padding: errors.Cpf_usuario && 5,}]}
    />
    )}
    />
-   {errors.CPF && <Text style={styles.error}>{errors.CPF?.message}</Text>}
-
+   {errors.Cpf_usuario && <Text style={styles.error}>{errors.Cpf_usuario?.message}</Text>} 
+ 
+    
     <TouchableOpacity style={styles.btn} onPress={handleSubmit(cadastroUser)}>
         <Text style={styles.btntext}>Registrar</Text>
     </TouchableOpacity>

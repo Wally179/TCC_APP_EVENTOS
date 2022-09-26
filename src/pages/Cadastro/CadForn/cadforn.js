@@ -8,14 +8,15 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
 import {Picker} from '@react-native-picker/picker';
 import {useNavigation} from '@react-navigation/native'
+import axios from 'axios';
 
 const schema = yup.object({
-    Fornecedor: yup.string().required("Informe o seu nome"),
-    Email: yup.string().email("Email Invalido").required("Informe seu Email"),
-    Senha: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
-    CNPJ: yup.string().length(14,"Digite um CNPJ valido").required("Informe um CNPJ"),
-    Celular: yup.string().min(10,"Digite um telefone valido com DDD").max(11,"Digite um numero valido com DDD Exemplo: 13974209777").required("Informe seu numero"),
-    Categoria: yup.string().required('Selecione uma categoria')
+    Razao_social_fornecedor: yup.string().required("Informe o seu nome"),
+    Email_fornecedor: yup.string().email("Email Invalido").required("Informe seu Email"),
+    senha_usuario: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
+    Cpf_fornecedor: yup.string().length(14,"Digite um CNPJ valido").required("Informe um CNPJ"),
+    Celular_fornecedor: yup.string().min(10,"Digite um telefone valido com DDD").max(11,"Digite um numero valido com DDD Exemplo: 13974209777").required("Informe seu numero"),
+    Tipo_servico_fonercedor: yup.string().required('Selecione uma categoria')
 })
 
 
@@ -52,8 +53,18 @@ export default function CadForn() {
         }).start()
     }
 
-    function cadastroFor(data){
-        console.log(data);
+   async function cadastroFor(data){
+        try {
+            await axios.post('http://192.168.15.90:3000/api/fornecedor', data)
+               alert('Fornecedor Cadastrado')
+               navigation.navigate('Login')
+           } catch (errors) {
+               console.log('erro: ', errors)
+               console.log(' ')
+               console.log('Esta sendo enviado:', data)
+           }
+           
+       return data;
     }
 
     return (
@@ -76,7 +87,7 @@ export default function CadForn() {
    
    <Controller
    control={control}
-   name='Fornecedor'
+   name='Razao_social_fornecedor'
    render={({ field: {onChange, value}}) => (
     <InputWithIcon 
     placeholder='Nome da empresa'
@@ -84,14 +95,14 @@ export default function CadForn() {
     value={value}
     onChangeText={onChange}
     icon="ios-business"
-    style={ [styles.inputWithIcon,{borderWidth:errors.Fornecedor && 1, borderColor: errors.Fornecedor && '#ff375b', padding: errors.Fornecedor && 5,}]} />
+    style={ [styles.inputWithIcon,{borderWidth:errors.Razao_social_fornecedor && 1, borderColor: errors.Razao_social_fornecedor && '#ff375b', padding: errors.Razao_social_fornecedor && 5,}]} />
    )}
    />
-    {errors.Fornecedor && <Text style={styles.error}>{errors.Fornecedor?.message}</Text>}
+    {errors.Razao_social_fornecedor && <Text style={styles.error}>{errors.Razao_social_fornecedor?.message}</Text>}
 
         <Controller
         control={control}
-        name='Email'
+        name='Email_fornecedor'
         render={({ field: {onChange, value}}) => (
             <InputWithIcon 
             placeholder='Email'
@@ -99,14 +110,14 @@ export default function CadForn() {
             value={value}
             onChangeText={onChange}
             icon="ios-mail"
-            style={ [styles.inputWithIcon, {borderWidth:errors.Email && 1, borderColor: errors.Email && '#ff375b', padding: errors.Email && 5,}]} />
+            style={ [styles.inputWithIcon, {borderWidth:errors.Email_fornecedor && 1, borderColor: errors.Email_fornecedor && '#ff375b', padding: errors.Email_fornecedor && 5,}]} />
        )}
    />
-   {errors.Email && <Text style={styles.error}>{errors.Email?.message}</Text>}
+   {errors.Email_fornecedor && <Text style={styles.error}>{errors.Email_fornecedor?.message}</Text>}
        
        <Controller
         control={control}
-        name='Senha'
+        name='senha_usuario'
         render={({ field: {onChange, value}}) => (
         <View style={styles.container2}>
             <View style={styles.inputArea}>
@@ -116,13 +127,13 @@ export default function CadForn() {
                 <TextInput 
                 placeholder='Senha' 
                 placeholderTextColor="#666" 
-                style={[styles.input, {borderBottomWidth:errors.Senha && 1, borderTopWidth:errors.Senha && 1, borderLeftWidth:errors.Senha && 1, borderColor: errors.Senha && '#ff375b', padding: errors.Senha && 5,}]}
+                style={[styles.input, {borderBottomWidth:errors.senha_usuario && 1, borderTopWidth:errors.senha_usuario && 1, borderLeftWidth:errors.senha_usuario && 1, borderColor: errors.senha_usuario && '#ff375b', padding: errors.senha_usuario && 5,}]}
                 value={value}
                 onChangeText={onChange}
                 secureTextEntry={hidePass}
                 
                 />
-                <TouchableOpacity style={[styles.icon2,  {borderBottomWidth:errors.Senha && 1, borderTopWidth:errors.Senha && 1, borderRightWidth:errors.Senha && 1, borderColor: errors.Senha && '#ff375b'}]} 
+                <TouchableOpacity style={[styles.icon2,  {borderBottomWidth:errors.senha_usuario && 1, borderTopWidth:errors.senha_usuario && 1, borderRightWidth:errors.senha_usuario && 1, borderColor: errors.senha_usuario && '#ff375b'}]} 
                 onPress={ () => setHidePass(!hidePass)}>
                     <Ionicons name={hidePass ? 'eye' : 'eye-off'} color='#0D9D89' size={22}/>
                 </TouchableOpacity>
@@ -130,12 +141,11 @@ export default function CadForn() {
         </View>
                )}
                />
-        {errors.Senha && <Text style={styles.error}>{errors.Senha?.message}</Text>}
+        {errors.senha_usuario && <Text style={styles.error}>{errors.senha_usuario?.message}</Text>}
 
-
-        <Controller
+ <Controller
         control={control}
-        name='Celular'
+        name='Celular_fornecedor'
         render={({ field: {onChange, value}}) => (
             <InputWithIcon 
             placeholder='Celular'
@@ -144,14 +154,14 @@ export default function CadForn() {
             value={value}
             onChangeText={onChange}
             keyboardType="numeric" 
-            style={ [styles.inputWithIcon, {borderWidth:errors.Celular && 1, borderColor: errors.Celular && '#ff375b', padding: errors.Celular && 5,}]}/>
+            style={ [styles.inputWithIcon, {borderWidth:errors.Celular_fornecedor && 1, borderColor: errors.Celular_fornecedor && '#ff375b', padding: errors.Celular_fornecedor && 5,}]}/>
     )}
     />
-    {errors.Celular && <Text style={styles.error}>{errors.Celular?.message}</Text>}
+    {errors.Celular_fornecedor && <Text style={styles.error}>{errors.Celular_fornecedor?.message}</Text>}
     
         <Controller
         control={control}
-        name='CNPJ'
+        name='Cpf_fornecedor'
         render={({ field: {onChange, value}}) => (
             <InputWithIcon 
             placeholder='CNPJ'
@@ -160,22 +170,22 @@ export default function CadForn() {
             value={value}
             onChangeText={onChange}
             keyboardType="numeric" 
-            style={ [styles.inputWithIcon, {borderWidth:errors.CNPJ && 1, borderColor: errors.CNPJ && '#ff375b', padding: errors.CNPJ && 5,}]}
+            style={ [styles.inputWithIcon, {borderWidth:errors.Cpf_fornecedor && 1, borderColor: errors.Cpf_fornecedor && '#ff375b', padding: errors.Cpf_fornecedor && 5,}]}
             />
     )}
     />
-    {errors.CNPJ && <Text style={styles.error}>{errors.CNPJ?.message}</Text>}
+    {errors.Cpf_fornecedor && <Text style={styles.error}>{errors.Cpf_fornecedor?.message}</Text>}
 
         <Controller
         control={control}
-        name='Categoria'
+        name='Tipo_servico_fonercedor'
         render={({ field: {onChange, value}}) => (
             <View style={styles.container2}>
             <View style={styles.inputArea}>
             <TouchableWithoutFeedback>
             <Ionicons style={styles.icon} name="briefcase" size={22} color="#0D9D89" />
             </TouchableWithoutFeedback>
-                <Picker style={[styles.select, {borderWidth:errors.Categoria && 1, borderColor: errors.Categoria && '#ff375b', padding: errors.Categoria && 5,}]} selectedValue={value} onValueChange={onChange}>
+                <Picker style={[styles.select, {borderWidth:errors.Tipo_servico_fonercedor && 1, borderColor: errors.Tipo_servico_fonercedor && '#ff375b', padding: errors.Tipo_servico_fonercedor && 5,}]} selectedValue={value} onValueChange={onChange}>
                     <Picker.Item style={styles.selectItem} label='Categoria de negocio' disabled/>
                     <Picker.Item style={styles.selectItem} label='Local' value='Local'/>
                     <Picker.Item style={styles.selectItem} label='Buffet' value='Buffet'/>
@@ -186,7 +196,7 @@ export default function CadForn() {
         </View>
         )}
         />
-        {errors.Categoria && <Text style={styles.error}>{errors.Categoria?.message}</Text>}
+        {errors.Tipo_servico_fonercedor && <Text style={styles.error}>{errors.Tipo_servico_fonercedor?.message}</Text>}
     <TouchableOpacity style={styles.btn} onPress={handleSubmit(cadastroFor)}>
         <Text style={styles.btntext}>Registrar</Text>
     </TouchableOpacity>

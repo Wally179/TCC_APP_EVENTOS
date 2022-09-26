@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, BackHandler} from 'react-native';
+import { Alert , KeyboardAvoidingView, TouchableOpacity, Text, Pressable, Keyboard, StatusBar, Animated, View, TouchableWithoutFeedback, TextInput, BackHandler} from 'react-native';
 import InputWithIcon from '../../../components/InputImage/InputIcon.js'
 import { Ionicons } from '@expo/vector-icons';
 import styles from "./style";
@@ -7,9 +7,10 @@ import { useForm, Controller} from 'react-hook-form'
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
 import {NavigationRouteContext, useNavigation} from '@react-navigation/native'
+import axios from 'axios';
 const schema = yup.object({
-  Email: yup.string().email("Email Invalido").required("Informe seu Email"),
-  Senha: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
+  login_usuario: yup.string().email("Email Invalido").required("Informe seu Email"),
+  senha_usuario: yup.string().min(8,"A senha deve ter pelo menos 8 digitos").required("Informe sua senha"),
 })
 
 
@@ -41,8 +42,49 @@ export default function Login() {
     
   }, []);
   
-  function cadastroFor(data){
+  async function cadastroForApi(data){
+    try {
+      await axios.post('http://192.168.15.90:3000/api/login/fornecedor', data)
+      alert('dado enviado')
+      } catch (errors) {
+      console.log('erro: ', errors)
+      console.log(' ')
+      console.log('Esta sendo enviado:', data)
+      }
+  
+    return data;
+  }
+
+  async function cadastroUserApi(data){
+    try {
+      await axios.post('http://192.168.15.90:3000/api/login/usuario', data)
+      alert('dado enviado')
+      } catch (errors) {
+      console.log('erro: ', errors)
+      console.log(' ')
+      console.log('Esta sendo enviado:', data)
+      }
+  
+    return data;
+  }
+
+
+  async function cadastroFor(data){
     console.log(data);
+    Alert.alert(
+      "Tipo de conta",
+      "Sua conta é uma conta:",
+      [
+        {
+          text: "Fornecedor",
+          onPress: () => {cadastroForApi(data)}
+          },
+        { 
+          text: "Cliente", 
+          onPress: () => {cadastroUserApi(data)} 
+        }
+      ]
+    );
 }
 
   function keyboardDidShow(){
@@ -103,7 +145,7 @@ export default function Login() {
       <Text style={styles.textlogo}>Preencha suas Informações de login</Text>
       <Controller
         control={control}
-        name='Email'
+        name='login_usuario'
         render={({ field: {onChange, value}}) => (
             <InputWithIcon 
             placeholder='Email'
@@ -111,13 +153,13 @@ export default function Login() {
             value={value}
             onChangeText={onChange}
             icon="person-circle-sharp"
-            style={ [styles.inputWithIcon, {borderWidth:errors.Email && 1, borderColor: errors.Email && '#ff375b', padding: errors.Email && 5,}]} />
+            style={ [styles.inputWithIcon, {borderWidth:errors.login_usuario && 1, borderColor: errors.login_usuario && '#ff375b', padding: errors.login_usuario && 5,}]} />
        )}
    />
-   {errors.Email && <Text style={styles.error}>{errors.Email?.message}</Text>}
+   {errors.login_usuario && <Text style={styles.error}>{errors.login_usuario?.message}</Text>}
       <Controller
         control={control}
-        name='Senha'
+        name='senha_usuario'
         render={({ field: {onChange, value}}) => (
         <View style={styles.container2}>
             <View style={styles.inputArea}>
@@ -127,13 +169,13 @@ export default function Login() {
                 <TextInput 
                 placeholder='Senha' 
                 placeholderTextColor="#666" 
-                style={[styles.input, {borderBottomWidth:errors.Senha && 1, borderTopWidth:errors.Senha && 1, borderLeftWidth:errors.Senha && 1, borderColor: errors.Senha && '#ff375b', padding: errors.Senha && 5,}]}
+                style={[styles.input, {borderBottomWidth:errors.senha_usuario && 1, borderTopWidth:errors.senha_usuario && 1, borderLeftWidth:errors.senha_usuario && 1, borderColor: errors.senha_usuario && '#ff375b', padding: errors.senha_usuario && 5,}]}
                 value={value}
                 onChangeText={onChange}
                 secureTextEntry={hidePass}
                 
                 />
-                <TouchableOpacity style={[styles.icon2,  {borderBottomWidth:errors.Senha && 1, borderTopWidth:errors.Senha && 1, borderRightWidth:errors.Senha && 1, borderColor: errors.Senha && '#ff375b'}]} 
+                <TouchableOpacity style={[styles.icon2,  {borderBottomWidth:errors.senha_usuario && 1, borderTopWidth:errors.senha_usuario && 1, borderRightWidth:errors.senha_usuario && 1, borderColor: errors.senha_usuario && '#ff375b'}]} 
                 onPress={ () => setHidePass(!hidePass)}>
                     <Ionicons name={hidePass ? 'eye' : 'eye-off'} color='#0D9D89' size={22}/>
                 </TouchableOpacity>
@@ -141,7 +183,7 @@ export default function Login() {
         </View>
                )}
                />
-        {errors.Senha && <Text style={styles.error}>{errors.Senha?.message}</Text>}
+        {errors.senha_usuario && <Text style={styles.error}>{errors.senha_usuario?.message}</Text>}
 
 
       <KeyboardAvoidingView style={styles.esqueceu}>
@@ -153,7 +195,6 @@ export default function Login() {
       <TouchableOpacity style={styles.btn} onPress={handleSubmit(cadastroFor)}>
         <Text style={styles.btntext}>Entrar</Text>
       </TouchableOpacity>
-      
       </Animated.View>
     </Pressable>
   );

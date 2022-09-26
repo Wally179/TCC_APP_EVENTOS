@@ -61,9 +61,9 @@ const slides= [
     <SafeAreaView style={styles.fundo}>
       <View style={styles.superior}>
         <View style={styles.linha1}>
-          <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Init')}><Ionicons name="arrow-back-outline" size={35} color="grey" /></TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('InicialUser')}><Ionicons name="arrow-back-outline" size={35} color="grey" /></TouchableOpacity>
           <Image source={require('../../../../img/logoapp.png') } style={{width:40, height:40, alignSelf:'center'}}/>
-          <TouchableOpacity style={styles.btn}><Ionicons name="menu" size={35} color="grey" /></TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={ () => navigation.toggleDrawer()}><Ionicons name="menu" size={35} color="grey" /></TouchableOpacity>
         </View >
         <View style={styles.linha2}>
           <View style={styles.containerslide}>

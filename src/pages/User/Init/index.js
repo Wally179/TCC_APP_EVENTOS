@@ -68,7 +68,7 @@ export default function Init() {
                 </TouchableOpacity>
               </View>
               <View style={styles.menu}>
-                <TouchableOpacity style={styles.icon}>
+                <TouchableOpacity style={styles.icon}  onPress={ () => {navigation.toggleDrawer()}}>
                   <Ionicons name={'menu-sharp'} size={50} color="#E8F6F7" />
                 </TouchableOpacity>
               </View>

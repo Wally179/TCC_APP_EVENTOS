@@ -21,7 +21,7 @@ export default function Catalogo({route}) {
       <View style={styles.linha1}>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Detalhes',{IDforn})}><Ionicons name="arrow-back-outline" size={35} color="grey" /></TouchableOpacity>
         <Text style={styles.titulo}>Nome do fornecedor</Text>
-        <TouchableOpacity style={styles.btn}><Ionicons name="menu" size={35} color="grey" /></TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={ () => {navigation.toggleDrawer()}}><Ionicons name="menu" size={35} color="grey" /></TouchableOpacity>
       </View >
     </View>
     <View>

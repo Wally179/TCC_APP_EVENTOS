@@ -31,7 +31,7 @@ function DrawersUser(){
 
 export default function(){
     return(
-        <Navigator initialRouteName='Caduser' screenOptions={{headerShown: false}}>
+        <Navigator initialRouteName='Login' screenOptions={{headerShown: false}}>
             <Screen name="Login" component={Login}/>
             <Screen name="Caduser" component={Caduser}/>
             <Screen name="CadForn" component={CadForn}/>

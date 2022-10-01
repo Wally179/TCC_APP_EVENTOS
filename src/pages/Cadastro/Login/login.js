@@ -22,6 +22,9 @@ export default function Login() {
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x:196, y: 178}));
   const [hidePass, setHidePass] = useState(true);
+
+
+
   const navigation = useNavigation()
   useEffect(()=> {
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
@@ -42,35 +45,39 @@ export default function Login() {
     
   }, []);
   
+  const [res,setRes] = useState('')
+
+
   async function cadastroForApi(data){
-    try {
+    
       await axios.post('http://192.168.15.90:3000/api/login/fornecedor', data)
-      alert('dado enviado')
-      } catch (errors) {
-      console.log('erro: ', errors)
-      console.log(' ')
-      console.log('Esta sendo enviado:', data)
-      }
-  
-    return data;
+      .then((response) => {
+        setRes(response.data.id_fornecedor)
+        console.log(res)
+    })
+    .catch((error) => {
+        console.log(error)
+        alert("Falha ao fazer login, tente novamente")
+    });
   }
-
+  
+  
+  
   async function cadastroUserApi(data){
-    try {
-      await axios.post('http://192.168.15.90:3000/api/login/usuario', data)
-      alert('dado enviado')
-      } catch (errors) {
-      console.log('erro: ', errors)
-      console.log(' ')
-      console.log('Esta sendo enviado:', data)
-      }
-  
-    return data;
+      
+        await axios.post('http://192.168.15.90:3000/api/login/usuario', data)
+        .then((response) => {
+            setRes(response.data.id_usuario)
+            console.log(res)
+        })
+        .catch((error) => {
+            console.log(error)
+            alert("Falha ao fazer login, tente novamente")
+        });
+    
   }
-
 
   async function cadastroFor(data){
-    console.log(data);
     Alert.alert(
       "Tipo de conta",
       "Sua conta é uma conta:",

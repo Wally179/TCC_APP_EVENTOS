@@ -33,7 +33,7 @@ export default function Caduser() {
 
      async function cadastroUser(data){ 
         try {
-         await axios.post('http://192.168.15.90:3000/api/usuario', data)
+         await axios.post('http://192.168.15.90:3000/api/usuario/completo', data)
             alert('Usuario Cadastrado')
             navigation.navigate('Login')
         } catch (errors) {

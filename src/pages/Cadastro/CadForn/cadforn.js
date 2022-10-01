@@ -55,7 +55,7 @@ export default function CadForn() {
 
    async function cadastroFor(data){
         try {
-            await axios.post('http://192.168.15.90:3000/api/fornecedor', data)
+            await axios.post('http://192.168.15.90:3000/api/fornecedor/completo', data)
                alert('Fornecedor Cadastrado')
                navigation.navigate('Login')
            } catch (errors) {

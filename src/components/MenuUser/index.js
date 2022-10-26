@@ -1,5 +1,5 @@
 import React, { useState,  useEffect} from 'react';
-import { Image, Text, TouchableOpacity, View, Dimensions } from 'react-native'
+import { Image, Text, TouchableOpacity, View, Dimensions, Alert } from 'react-native'
 import {DrawerContentScrollView} from '@react-navigation/drawer'
 import { Ionicons,  FontAwesome, MaterialIcons  } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
@@ -7,6 +7,9 @@ import styles from "./style";
 
 export default function MenuUser({navigation}) {
     const {height,width} = Dimensions.get('screen');
+    function alertar() {
+        alert("EM DESENVOLVIMENTO")
+    }
   return (
     <SafeAreaView style={[styles.fundo]}>
         <View style={[styles.linha1, {paddingTop: height/12}]}>
@@ -21,12 +24,12 @@ export default function MenuUser({navigation}) {
         </View>
 
         <View style={styles.CardOpç}>
-            <TouchableOpacity style={styles.opç}><MaterialIcons name="house" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Inicio</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.opç}><FontAwesome name="id-card" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Perfil</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.opç}><Ionicons name="notifications" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Notificação</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.opç}><Ionicons name="location" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Localização</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.opç}><Ionicons name="construct" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Configuração</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.opçSair,{height:height/15}]}><MaterialIcons name="logout" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Sair</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opç} onPress={() => navigation.navigate('InicialUser')}><MaterialIcons name="house" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Inicio</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opç} onPress={alertar}><FontAwesome name="id-card" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Perfil</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opç} onPress={alertar}><Ionicons name="notifications" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Notificação</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opç} onPress={alertar}><Ionicons name="location" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Localização</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.opç} onPress={alertar}><Ionicons name="construct" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Configuração</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.opçSair,{height:height/15}]} onPress={() => navigation.navigate('TelaInicial')}><MaterialIcons name="logout" size={28} color="#454A4D" /><Text style={[styles.txtop, {marginLeft:width/30}]}>Sair</Text></TouchableOpacity>
         </View>
     </SafeAreaView>
   )

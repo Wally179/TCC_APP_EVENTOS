@@ -22,10 +22,9 @@ export default function Login() {
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x:196, y: 178}));
   const [hidePass, setHidePass] = useState(true);
-
-
-
   const navigation = useNavigation()
+  const [res,setRes] = useState('')
+  const [resUs,setResUs] = useState('')
   useEffect(()=> {
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
     keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);   
@@ -44,16 +43,48 @@ export default function Login() {
     ]).start();
     
   }, []);
+    function keyboardDidShow(){
   
-  const [res,setRes] = useState('')
-
+      Animated.parallel([
+        Animated.timing(logo.x, {
+          toValue: 92,
+          duration:100,
+          useNativeDriver: false,
+        }),
+        Animated.timing(logo.y, {
+          toValue: 85,
+          duration:100,
+          useNativeDriver: false,
+        }),
+      ]).start();
+    }
+    function keyboardDidHide(){
+      Animated.parallel([
+        Animated.timing(logo.x, {
+          toValue: 196,
+          duration:100,
+          useNativeDriver: false,
+        }),
+        Animated.timing(logo.y, {
+          toValue: 178,
+          duration:100,
+          useNativeDriver: false,
+        }),
+      ]).start();
+    }
 
   async function cadastroForApi(data){
     
       await axios.post('http://192.168.15.90:3000/api/login/fornecedor', data)
       .then((response) => {
-        setRes(response.data.id_fornecedor)
-        console.log(res)
+        setResUs(response.data.id_fornecedor)
+        console.log(resUs)
+        if (response.data.id_fornecedor == 0) {
+          alert('Opção de login errada, tente novamente')
+        } else {
+          navigation.navigate('Forn',resUs)
+        }
+        
     })
     .catch((error) => {
         console.log(error)
@@ -62,13 +93,17 @@ export default function Login() {
   }
   
   
-  
   async function cadastroUserApi(data){
       
         await axios.post('http://192.168.15.90:3000/api/login/usuario', data)
         .then((response) => {
             setRes(response.data.id_usuario)
             console.log(res)
+            if (response.data.id_usuario == 0) {
+              alert('Opção de login errada, tente novamente')
+            } else {
+              navigation.navigate('Init')
+            }
         })
         .catch((error) => {
             console.log(error)
@@ -94,35 +129,6 @@ export default function Login() {
     );
 }
 
-  function keyboardDidShow(){
-
-    Animated.parallel([
-      Animated.timing(logo.x, {
-        toValue: 92,
-        duration:100,
-        useNativeDriver: false,
-      }),
-      Animated.timing(logo.y, {
-        toValue: 85,
-        duration:100,
-        useNativeDriver: false,
-      }),
-    ]).start();
-  }
-  function keyboardDidHide(){
-    Animated.parallel([
-      Animated.timing(logo.x, {
-        toValue: 196,
-        duration:100,
-        useNativeDriver: false,
-      }),
-      Animated.timing(logo.y, {
-        toValue: 178,
-        duration:100,
-        useNativeDriver: false,
-      }),
-    ]).start();
-  }
   
   return (
     
@@ -137,8 +143,8 @@ export default function Login() {
 
         <Animated.Image source={require('../../../../img/logoapp.png') } style={{width:logo.x, height:logo.y,}}/>
         
-        <Text style={styles.Textnome}>Clube da luta infantil</Text>
-        <Text style={styles.Textfrase}>1 regra do Clube da luta infantil é não falar do Clube da luta infantil</Text>
+        <Text style={styles.Textnome}>Fast Fest</Text>
+        <Text style={styles.Textfrase}>Sua diversão mais ágil</Text>
       
       </KeyboardAvoidingView>
 

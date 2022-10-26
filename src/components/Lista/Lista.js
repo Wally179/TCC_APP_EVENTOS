@@ -10,18 +10,18 @@ export default function Lista({data}) {
     return (
         <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Detalhes',{IDforn})}>
             <View style={styles.linha}>
-                <Text style={styles.textItem}>{data.full_name}</Text>
+                <Text style={styles.textItem}>{data.Nome_fantasia_fornecedor}</Text>
                 <View style={styles.Rate}>
                     <Ionicons style={styles.icon} name={"md-star"} size={35} color="#E8F6F7" ></Ionicons>
-                    <Text style={styles.Num}>{data.Rate}</Text>
+                    <Text style={styles.Num}>{data.nota_fornecedor}</Text>
                 </View>
             </View>
             <View style={styles.linha2}>
                 <View style={styles.logo}>
-                    <Image source={data.img} style={styles.logoconte}/> 
+                    <Image source={require('../../../img/logoapp2.png') }  style={styles.logoconte}/> 
                 </View>
             <View style={styles.container}>
-                 <Text style={styles.conteudo}>{data.conteudo}</Text>
+                 <Text style={styles.conteudo}>{data.Descricao_fornecedor}</Text>
                  <Text style={styles.ver}>Ver mais</Text>
             </View>
             </View>

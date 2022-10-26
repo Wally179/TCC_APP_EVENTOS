@@ -10,8 +10,8 @@ export default function TelaInicial () {
             <View style={styles.Logo}>
                 <Image source={require('../../../../img/logoapp.png')}/>
 
-                <Text style={styles.Textnome}>Clube de Luta Infantil</Text>
-                <Text style = {styles.Textfrase}>Seja Bem Vindo ao Clube de Luta Infantil</Text>
+                <Text style={styles.Textnome}>Fast Fest</Text>
+                <Text style = {styles.Textfrase}>Sua diversão mais ágil</Text>
             </View>
             <View style={styles.container}>
                 <TouchableOpacity style={styles.btnEntrar} onPress={() => navigation.navigate('Login')}>

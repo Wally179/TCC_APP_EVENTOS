@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         },
         Textnome:{
           fontStyle: "normal",
-          fontSize: 22,
+          fontSize: 25,
           lineHeight: 30,
           color: "#E8F6F7",
           width:"100%",
@@ -61,10 +61,11 @@ const styles = StyleSheet.create({
         },
         Textfrase:{
           fontStyle:"italic",
-          fontSize: 13,
+          fontSize: 17,
           lineHeight: 20,
           color: "#E8F6F7",
           width:"75%",
+          textAlign: "center",
         },
         EsqueceuSenha:{
           width:"65%",

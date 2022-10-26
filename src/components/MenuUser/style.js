@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         paddingVertical:15,
         paddingLeft:10,
         position:'absolute',
+        top:400
       },
       txtop:{
         color:'#454A4D',

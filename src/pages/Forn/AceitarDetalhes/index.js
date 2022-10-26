@@ -30,9 +30,9 @@ export default function AceitarDetalhes() {
     <SafeAreaView style={styles.fundo}>
       
         <View style={styles.linha1}>
-          <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Forn')}><Ionicons name="arrow-back-outline" size={35} color="grey" /></TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('FornInicial')}><Ionicons name="arrow-back-outline" size={35} color="grey" /></TouchableOpacity>
           <Text style={styles.pedidoN}>Numero do pedido</Text>
-          <TouchableOpacity style={styles.btn}><Ionicons name="menu" size={35} color="grey" /></TouchableOpacity>
+          <TouchableOpacity style={styles.btn} onPress={ () => {navigation.toggleDrawer()}}><Ionicons name="menu" size={35} color="grey" /></TouchableOpacity>
         </View >
       <View style={styles.container}>   
           <FlatList

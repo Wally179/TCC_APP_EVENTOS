@@ -4,6 +4,13 @@ const styles = StyleSheet.create({
         backgroundColor:"#31B1B9",
         flex: 1,
       },
+      superior:{
+        
+        left:0,
+        right:0,
+        top:0,
+        zIndex:1000
+      },
       container:{
         backgroundColor: "#E8F6F7",
         borderTopLeftRadius:50,
@@ -92,7 +99,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight:'bold',
         margin:"3%"
-      }
+      },
+    
       
 });
 

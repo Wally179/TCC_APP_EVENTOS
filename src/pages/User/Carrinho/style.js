@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     fundo:{
-        backgroundColor:"#31B1B9",
+        backgroundColor:"#585CE5",
         height:"100%",
         width:"100%"
       },
@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
       },
- 
       btn:{
         width:50,
         height:50,
@@ -63,6 +62,16 @@ const styles = StyleSheet.create({
       flat:{
         marginTop:15,
       },
+      botao:{
+        position:'absolute',
+        width:'100%',
+        height:70,
+        backgroundColor:'#585CE5',
+        bottom:0,
+        flexDirection: 'row',
+        alignItems:"center",
+        paddingHorizontal:15,
+      },
       btntxt:{
         fontSize: 18,
         lineHeight: 24,
@@ -83,14 +92,6 @@ const styles = StyleSheet.create({
       },
       bloco3:{
         width:'20%'
-      },
-      contador:{
-        fontSize: 18,
-        lineHeight: 24,
-        color: "#E8F6F7",
-        alignSelf: 'center',
-        position:'absolute',
-        bottom:-5
       }
 });
 

@@ -7,7 +7,6 @@ import {
   Keyboard,
   TextInput,
   TouchableOpacity,
-  Animated,
   Dimensions,
   ActivityIndicator,
 } from "react-native";
@@ -21,15 +20,17 @@ import axios from "axios";
 const { height, width } = Dimensions.get("screen");
 
 export default function Init() {
-  useEffect(() => {
+useEffect(() => {
     loadApi();
   }, []);
   const navigation = useNavigation();
+
   const baseURL = "http://192.168.15.90:3000/api/produto/forncedor/";
-  const perPage = 1;
+  const basePesq = 'http://192.168.15.90:3000/api/produtos/fornecedor/'
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [pesquisado, setPesquisado] = useState("");
   const [selecionado, setSelecionado] = useState("Buffet");
   const [op, setOp] = useState([
     { id: 1, cate: "Buffet", ico: "cake" },
@@ -38,8 +39,15 @@ export default function Init() {
     { id: 4, cate: "Local", ico: "warehouse" },
     { id: 5, cate: "Diversão", ico: "party-popper" },
   ]);
-  const [scrollY, setScrollY] = useState(new Animated.Value(0));
-  
+
+  async function pesquisa() {
+      await axios.get(basePesq+pesquisado).then((response) => {
+        setData(response.data);
+        setSelecionado("Pesquisando por "+pesquisado)
+      });
+    
+  }
+
   
   async function loadApi() {
     if (loading) return;
@@ -61,28 +69,13 @@ export default function Init() {
       </View>
     )
   }
-  
+
 
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.fundo}>
-      <Animated.View
-        style={[
-          styles.superior,
-          {
-            height: scrollY.interpolate({
-              inputRange: [10, 160, 185],
-              outputRange: [300, 50, 0],
-              extrapolate: "clamp",
-            }),
-          },
-          {
-            opacity: scrollY.interpolate({
-              inputRange: [1, 75, 170],
-              outputRange: [1, 1, 0],
-              extrapolate: "clamp",
-            }),
-          },
-        ]}
+      <View
+        style={
+          styles.superior }
       >
         <View style={[styles.linha]}>
           <View style={styles.inputcontainer}>
@@ -90,8 +83,10 @@ export default function Init() {
               placeholder="Pesquisa"
               placeholderTextColor="#E8F6F7"
               style={styles.input}
+              onChangeText={pesquisado => setPesquisado(pesquisado)}
+              defaultValue={pesquisado}
             ></TextInput>
-            <TouchableOpacity style={styles.seach}>
+            <TouchableOpacity style={styles.seach} onPress={() => {  pesquisa(pesquisado) }}>
               <Ionicons name={"md-search"} size={28} color="#E8F6F7" />
             </TouchableOpacity>
           </View>
@@ -131,33 +126,24 @@ export default function Init() {
             </TouchableOpacity>
           )}
         />
-      </Animated.View>
-
+      </View>
+      
+      <View style={[styles.container, {}]}>
       <FlatList
-        style={styles.container}
         ListHeaderComponent={
           <Text style={styles.categoria}>{selecionado}</Text>
         }
-        ListHeaderComponentStyle={{ marginTop: 45 }}
-        contentContainerStyle={{ marginHorizontal: 20 }}
+        ListHeaderComponentStyle={{ marginTop: 40}}
+        ListFooterComponentStyle={{marginBottom:height/2}}
+        contentContainerStyle={{ marginHorizontal: 25 }}
         data={data}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => <Lista data={item} />}
-        scrollEventThrottle={1}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: { y: scrollY },
-              },
-            },
-          ],
-          { useNativeDriver: false }
-        )}
+       
         onEndReached={loadApi}
         onEndReachedThreshold={0.2}
         ListFooterComponent={ <Footerlist Load={loading}/>}
-      />
+      /></View>
     </Pressable>
   );
 }

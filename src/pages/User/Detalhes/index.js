@@ -11,38 +11,32 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import styles from "./style";
 import { Ionicons } from "@expo/vector-icons";
+import axios, { Axios } from "axios";
 import { FontAwesome } from "@expo/vector-icons";
 import MapView, { Marker, Callout } from "react-native-maps";
 import Carousel from "react-native-snap-carousel-v4";
 
 export default function Detalhes({ route }) {
   const [origin, setOrigen] = useState({
-    latitude: -23.55908,
-    longitude: -46.66113,
+    latitude: -23.9762,
+    longitude: -46.3179,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+  const { IDforn } = route.params;  
+  const [data, setData] = useState([]);
+  const baseURL = "http://192.168.15.90:3000/api/fornecedor/";
+ 
+  useEffect(() => {
+    loadApi()
+  }, [IDforn,setData]);
+  const nome = data.Nome_fantasia_fornecedor 
 
-  /* 
- import * as Location from 'expo-location';
- import * as Permissions from 'expo-permissions';
- EU ENLOUQUECI E FIZ UM NEGOCIO PARA USAR SEU GPS, MAS Não PRECISA NESSA TELA, MAS VAI USAR NO FUTURO EM OUTRA TELA
-  useEffect(()=>{
-    (async function(){
-        const { status, permissions } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status === 'granted') {
-            let location = await Location.getCurrentPositionAsync({enableHighAccuracy: true});
-            setOrigin({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.000922,
-                longitudeDelta: 0.000421
-            })
-        } else {
-            throw new Error('Location permission not granted');
-        }
-    })();
-},[]); */
+  async function loadApi() {
+    await axios.get(baseURL+IDforn).then((response) => {
+      setData(response.data);
+    });
+  }
   const { height, width } = Dimensions.get("screen");
   const slides = [
     {
@@ -62,7 +56,6 @@ export default function Detalhes({ route }) {
   }
 
   const navigation = useNavigation();
-  const { IDforn } = route.params;
   return (
     <SafeAreaView style={styles.fundo}>
       <View style={styles.superior}>
@@ -97,15 +90,15 @@ export default function Detalhes({ route }) {
             ></Carousel>
           </View>
           <View style={styles.infos}>
-            <Text style={styles.titulo}>Nome do fornecedor</Text>
-            <Text style={styles.categoria}>Especialidade</Text>
+            <Text style={styles.titulo}>{data.Nome_fantasia_fornecedor}</Text>
+            <Text style={styles.categoria}>{data.Tipo_servico_fonercedor}</Text>
             <View style={styles.infoIcon1}>
               <View style={styles.IconInfo}>
                 <Ionicons name="md-star-sharp" size={24} color="#FFC000" />
               </View>
               <View style={styles.TXTContainer}>
                 <Text style={styles.IconTXT}>Nota</Text>
-                <Text style={styles.IconTXT}>4,8 de 5</Text>
+                <Text style={styles.IconTXT}>{data.nota_fornecedor} de 5</Text>
               </View>
             </View>
             <View style={styles.infoIcon2}>
@@ -125,17 +118,15 @@ export default function Detalhes({ route }) {
           <View style={styles.container2}>
             <Text style={styles.titulos}>Informação</Text>
             <Text style={styles.descri}>
-              Texto generico sobre informação do serviço, ou algo da empresa que
-              ficaria aqui e tals, estou escrevendo qualquer coisa para enrolar
-              e ver como ficaria a art no geral.
+              {data.Descricao_fornecedor}
             </Text>
             <Text style={styles.titulos}>Localização</Text>
             <MapView
               style={styles.map}
               initialRegion={origin}
               zoomEnabled={true}
-              minZoomLevel={17}
-              showsUserLocation={false}
+              minZoomLevel={15}
+              showsUserLocation={true}
               loadingEnabled={true}
             >
               <Marker coordinate={origin} pinColor="#31B1B9">
@@ -144,21 +135,15 @@ export default function Detalhes({ route }) {
                 </Callout>
               </Marker>
             </MapView>
-            <Text style={styles.titulos}>Review</Text>
-            <Text style={styles.descri}>
-              Texto generico sobre informação do serviço, ou algo da empresa que
-              ficaria aqui e tals, estou escrevendo qualquer coisa para enrolar
-              e ver como ficaria a art no geral.
-            </Text>
           </View>
         </ScrollView>
       </View>
       <TouchableOpacity
         style={styles.botao}
-        onPress={() => navigation.navigate("Catalogo", { IDforn })}
+        onPress={() => navigation.navigate("Catalogo", { IDforn,nome},)}
       >
         <Text style={styles.btntxt}>Contratar serviço</Text>
-        <Text style={styles.btntxt2}>Valor entre $$ a $$</Text>
+        <Text style={styles.btntxt2}>Valor entre {data.valor_min} a {data.valor_max}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

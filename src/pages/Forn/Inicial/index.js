@@ -40,6 +40,9 @@ export default function Forn() {
       Local: "Rua dr joaquim coutinho marques",
       img: require("../../../../img/logoapp.png"),
       hora: "Quinta 23 de trezembro das 14 as 23",
+      produtos: {
+        prod: 'Bolo'
+      }
     },
     {
       id: 2,
@@ -87,23 +90,10 @@ export default function Forn() {
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.fundo}>
       <Animated.View
-        style={[
-          styles.superior,
-          {
-            height: scrollY.interpolate({
-              inputRange: [10, 185],
-              outputRange: [height / 2.5, 0],
-              extrapolate: "clamp",
-            }),
-          },
-          {
-            opacity: scrollY.interpolate({
-              inputRange: [1, 75, 170],
-              outputRange: [1, 1, 0],
-              extrapolate: "clamp",
-            }),
-          },
-        ]}
+        style={{
+            height: height / 2.5,
+          }
+        }
       >
         <View style={[styles.linha]}>
           <View style={styles.inputcontainer}>
@@ -148,17 +138,6 @@ export default function Forn() {
         contentContainerStyle={{ marginHorizontal: 20 }}
         data={opi}
         renderItem={({ item }) => <AndaForn data={item} />}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: { y: scrollY },
-              },
-            },
-          ],
-          { useNativeDriver: false }
-        )}
-        scrollEventThrottle={18}
         keyExtractor={(item) => String(item.id)}
       />
     </Pressable>

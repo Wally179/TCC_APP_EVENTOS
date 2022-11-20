@@ -15,7 +15,8 @@ import DetalhesForn from "../../pages/Forn/Detalhes";
 import AceitarDetalhes from "../../pages/Forn/AceitarDetalhes";
 import MenuUser from "../../components/MenuUser";
 import MenuForn from "../../components/MenuForn";
-
+import CartProvider from "../../Context/Cart";
+import Carrinho from "../../pages/User/Carrinho";
 const { Navigator, Screen } = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -34,14 +35,17 @@ function DrawersForn() {
 
 function DrawersUser() {
   return (
+    
     <Drawer.Navigator
       screenOptions={{ headerShown: false }}
       drawerContent={(props) => <MenuUser {...props} />}
     >
       <Drawer.Screen name="InicialUser" component={Init} />
+      <Drawer.Screen name="Carrinho" component={Carrinho} />
       <Drawer.Screen name="Detalhes" component={Detalhes} />
       <Drawer.Screen name="Catalogo" component={Catalogo} />
     </Drawer.Navigator>
+
   );
 }
 

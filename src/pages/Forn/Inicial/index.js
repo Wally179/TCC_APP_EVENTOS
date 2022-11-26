@@ -41,8 +41,8 @@ export default function Forn() {
       img: require("../../../../img/logoapp.png"),
       hora: "Quinta 23 de trezembro das 14 as 23",
       produtos: {
-        prod: 'Bolo'
-      }
+        prod: "Bolo",
+      },
     },
     {
       id: 2,
@@ -91,9 +91,8 @@ export default function Forn() {
     <Pressable onPress={Keyboard.dismiss} style={styles.fundo}>
       <Animated.View
         style={{
-            height: height / 2.5,
-          }
-        }
+          height: height / 2.5,
+        }}
       >
         <View style={[styles.linha]}>
           <View style={styles.inputcontainer}>

@@ -23,38 +23,41 @@ export default function Detalhes({ route }) {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
-  const { IDforn } = route.params;  
+  const { IDforn } = route.params;
   const [data, setData] = useState([]);
   const baseURL = "http://192.168.15.90:3000/api/fornecedor/";
- 
+
   useEffect(() => {
-    loadApi()
-  }, [IDforn,setData]);
-  const nome = data.Nome_fantasia_fornecedor 
+    loadApi();
+  }, [IDforn, setData]);
+  const nome = data.Nome_fantasia_fornecedor;
   async function loadApi() {
-    await axios.get(baseURL+IDforn).then((response) => {
+    await axios.get(baseURL + IDforn).then((response) => {
       setData(response.data);
     });
-    await axios.get(baseURL+IDforn+"/produto/").then((response) => { 
+    await axios.get(baseURL + IDforn + "/produto/").then((response) => {
       if (response.data !== 0) {
         setSlides(response.data);
       } else {
         setSlides([
           {
-            imagem_produto: "https://static.thenounproject.com/png/3674270-200.png",
-          }
+            imagem_produto:
+              "https://static.thenounproject.com/png/3674270-200.png",
+          },
         ]);
       }
-    }
-    )
-}
+    });
+  }
 
   const { height, width } = Dimensions.get("screen");
-  const [slides,setSlides] = useState([])
+  const [slides, setSlides] = useState([]);
   function renderItem({ item }) {
     return (
       <View style={styles.slide}>
-        <Image source={{uri:item.imagem_produto}} style={styles.ImagemSlide} />
+        <Image
+          source={{ uri: item.imagem_produto }}
+          style={styles.ImagemSlide}
+        />
       </View>
     );
   }
@@ -121,9 +124,7 @@ export default function Detalhes({ route }) {
         <ScrollView style={styles.container1}>
           <View style={styles.container2}>
             <Text style={styles.titulos}>Informação</Text>
-            <Text style={styles.descri}>
-              {data.Descricao_fornecedor}
-            </Text>
+            <Text style={styles.descri}>{data.Descricao_fornecedor}</Text>
             <Text style={styles.titulos}>Localização</Text>
             <MapView
               style={styles.map}
@@ -144,10 +145,12 @@ export default function Detalhes({ route }) {
       </View>
       <TouchableOpacity
         style={styles.botao}
-        onPress={() => navigation.navigate("Catalogo", { IDforn,nome},)}
+        onPress={() => navigation.navigate("Catalogo", { IDforn, nome })}
       >
         <Text style={styles.btntxt}>Contratar serviço</Text>
-        <Text style={styles.btntxt2}>Valor entre {data.valor_min} a {data.valor_max}</Text>
+        <Text style={styles.btntxt2}>
+          Valor entre {data.valor_min} a {data.valor_max}
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

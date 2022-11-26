@@ -35,7 +35,6 @@ function DrawersForn() {
 
 function DrawersUser() {
   return (
-    
     <Drawer.Navigator
       screenOptions={{ headerShown: false }}
       drawerContent={(props) => <MenuUser {...props} />}
@@ -45,7 +44,6 @@ function DrawersUser() {
       <Drawer.Screen name="Detalhes" component={Detalhes} />
       <Drawer.Screen name="Catalogo" component={Catalogo} />
     </Drawer.Navigator>
-
   );
 }
 

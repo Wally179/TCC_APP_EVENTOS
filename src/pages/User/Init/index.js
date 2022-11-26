@@ -20,13 +20,13 @@ import axios from "axios";
 const { height, width } = Dimensions.get("screen");
 
 export default function Init() {
-useEffect(() => {
+  useEffect(() => {
     loadApi();
   }, []);
   const navigation = useNavigation();
 
   const baseURL = "http://192.168.15.90:3000/api/produto/forncedor/";
-  const basePesq = 'http://192.168.15.90:3000/api/produtos/fornecedor/'
+  const basePesq = "http://192.168.15.90:3000/api/produtos/fornecedor/";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -41,52 +41,49 @@ useEffect(() => {
   ]);
 
   async function pesquisa() {
-      await axios.get(basePesq+pesquisado).then((response) => {
-        setData(response.data);
-        setSelecionado("Pesquisando por "+pesquisado)
-      });
-    
+    await axios.get(basePesq + pesquisado).then((response) => {
+      setData(response.data);
+      setSelecionado("Pesquisando por " + pesquisado);
+    });
   }
 
-  
   async function loadApi() {
     if (loading) return;
     setLoading(true);
-    const response = await axios.get(
-      baseURL + selecionado + "/page/" + page
-    );
+    const response = await axios.get(baseURL + selecionado + "/page/" + page);
     setData([...data, ...response.data]);
     setPage(page + 1);
     setLoading(false);
   }
 
-  function Footerlist({Load}){
-    if(!Load) return null; 
-    
-    return(
-      <View>
-        <ActivityIndicator size={25} color="black"/>
-      </View>
-    )
-  }
+  function Footerlist({ Load }) {
+    if (!Load) return null;
 
+    return (
+      <View>
+        <ActivityIndicator size={25} color="black" />
+      </View>
+    );
+  }
 
   return (
     <Pressable onPress={Keyboard.dismiss} style={styles.fundo}>
-      <View
-        style={
-          styles.superior }
-      >
+      <View style={styles.superior}>
         <View style={[styles.linha]}>
           <View style={styles.inputcontainer}>
             <TextInput
               placeholder="Pesquisa"
               placeholderTextColor="#E8F6F7"
               style={styles.input}
-              onChangeText={pesquisado => setPesquisado(pesquisado)}
+              onChangeText={(pesquisado) => setPesquisado(pesquisado)}
               defaultValue={pesquisado}
             ></TextInput>
-            <TouchableOpacity style={styles.seach} onPress={() => {  pesquisa(pesquisado) }}>
+            <TouchableOpacity
+              style={styles.seach}
+              onPress={() => {
+                pesquisa(pesquisado);
+              }}
+            >
               <Ionicons name={"md-search"} size={28} color="#E8F6F7" />
             </TouchableOpacity>
           </View>
@@ -127,23 +124,23 @@ useEffect(() => {
           )}
         />
       </View>
-      
+
       <View style={[styles.container, {}]}>
-      <FlatList
-        ListHeaderComponent={
-          <Text style={styles.categoria}>{selecionado}</Text>
-        }
-        ListHeaderComponentStyle={{ marginTop: 40}}
-        ListFooterComponentStyle={{marginBottom:height/2}}
-        contentContainerStyle={{ marginHorizontal: 25 }}
-        data={data}
-        keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <Lista data={item} />}
-       
-        onEndReached={loadApi}
-        onEndReachedThreshold={0.2}
-        ListFooterComponent={ <Footerlist Load={loading}/>}
-      /></View>
+        <FlatList
+          ListHeaderComponent={
+            <Text style={styles.categoria}>{selecionado}</Text>
+          }
+          ListHeaderComponentStyle={{ marginTop: 40 }}
+          ListFooterComponentStyle={{ marginBottom: height / 2 }}
+          contentContainerStyle={{ marginHorizontal: 25 }}
+          data={data}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => <Lista data={item} />}
+          onEndReached={loadApi}
+          onEndReachedThreshold={0.2}
+          ListFooterComponent={<Footerlist Load={loading} />}
+        />
+      </View>
     </Pressable>
   );
 }

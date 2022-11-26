@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./style";
 import { View, Text, Image, TouchableOpacity , Dimensions} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,6 +10,14 @@ const {height,width}= Dimensions.get('screen');
 export default function Cata({data,index}) {
     const {add} = useCart()
     const navigation = useNavigation(); 
+    const [Imagem,setImagem] = useState("https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/2427/no-image.png")
+    useEffect(() => {
+      if (data.imagem_produto !== null) {
+        setImagem(data.imagem_produto)
+      }
+    }, [])
+    
+    
     return (
         <TouchableOpacity style={[styles.item,{width:'100%', height:'auto'}]}  onPress={() => add(data,index)}>
             <View style={styles.linha}>
@@ -19,7 +27,7 @@ export default function Cata({data,index}) {
                     <Text style={styles.preço}>R$ {data.valor_produto}</Text>
                 </View>
                 <View>
-                    <Image source={require('../../../img/comidinhas.jpg')} style={{width:120, height:120}}/>
+                    <Image source={{uri:Imagem}}  resizeMode="cover" style={{width:width/4, height:height/8, borderRadius:15,}}/>
                 </View>
             </View>
         </TouchableOpacity>

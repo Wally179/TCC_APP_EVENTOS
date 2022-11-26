@@ -61,8 +61,12 @@ const styles = StyleSheet.create({
 
       },
       logoconte:{
-        width:85,
-        height:85,        
+        width:"100%",
+        height:"100%",   
+        borderWidth: 1,
+        borderRadius: 20,   
+        justifyContent:'center',
+        alignItems: 'center',  
       },
       linha2:{
         flexDirection: 'row',
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
         fontWeight:"bold",
         position: 'absolute',
         left:"72%",
-        bottom:-1
+        bottom:-2
       },
       valor: {
         left:-15,

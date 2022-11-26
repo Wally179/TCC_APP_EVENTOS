@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./style";
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +8,15 @@ import {useNavigation} from '@react-navigation/native';
 
 export default function Lista({data}) {
     const navigation = useNavigation(); 
-    const IDforn = data.id  
+    const IDforn = data.id
+    const [Imagem,setImagem] = useState("https://i.imgur.com/u8hRaKD.png")
+    useEffect(() => {
+      if (data.imagem_fornecedor !== null) {
+        setImagem(data.imagem_fornecedor)
+      }
+    }, [data])
+    
+    
     return (
         <TouchableOpacity style={styles.item} onPress={() => {navigation.navigate('Detalhes',{IDforn})}}>
             <View style={styles.linha}>
@@ -20,14 +28,14 @@ export default function Lista({data}) {
             </View>
             <View style={styles.linha2}>
                 <View style={styles.logo}>
-                    <Image source={require('../../../img/logoapp2.png') }  style={styles.logoconte}/> 
+                    <Image source={{uri:Imagem}}  resizeMode="cover" style={styles.logoconte}/> 
                 </View>
             <View style={styles.container}>
-                 <Text style={styles.conteudo}>{data.Descricao_fornecedor}</Text>
+                 <Text style={styles.conteudo} numberOfLines={5}>{data.Descricao_fornecedor}</Text>
                  <Text style={styles.ver}>Ver mais</Text>
             </View>
             </View>
-            <Text style={styles.valor}>Preços entre: <Text>{data.min} a {data.max}</Text></Text>
+            <Text style={styles.valor}>Preços entre: <Text>{data.valor_min} a {data.valor_max} reais</Text></Text>
         </TouchableOpacity>
     )
 }

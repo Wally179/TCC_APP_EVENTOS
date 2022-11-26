@@ -31,26 +31,30 @@ export default function Detalhes({ route }) {
     loadApi()
   }, [IDforn,setData]);
   const nome = data.Nome_fantasia_fornecedor 
-
   async function loadApi() {
     await axios.get(baseURL+IDforn).then((response) => {
       setData(response.data);
     });
-  }
-  const { height, width } = Dimensions.get("screen");
-  const slides = [
-    {
-      image: require("../../../../img/comidinhas.jpg"),
-    },
-    {
-      image: require("../../../../img/comidinhas2.jpg"),
-    },
-  ];
+    await axios.get(baseURL+IDforn+"/produto/").then((response) => { 
+      if (response.data !== 0) {
+        setSlides(response.data);
+      } else {
+        setSlides([
+          {
+            imagem_produto: "https://static.thenounproject.com/png/3674270-200.png",
+          }
+        ]);
+      }
+    }
+    )
+}
 
+  const { height, width } = Dimensions.get("screen");
+  const [slides,setSlides] = useState([])
   function renderItem({ item }) {
     return (
       <View style={styles.slide}>
-        <Image source={item.image} style={styles.ImagemSlide} />
+        <Image source={{uri:item.imagem_produto}} style={styles.ImagemSlide} />
       </View>
     );
   }

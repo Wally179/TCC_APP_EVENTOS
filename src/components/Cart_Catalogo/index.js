@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./style";
 import { View, Text, Image, TouchableOpacity , Dimensions, Alert} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -10,6 +10,12 @@ const {height,width}= Dimensions.get('screen');
 export default function CartCata({data,index}) {
     const {remove} = useCart()
     const navigation = useNavigation(); 
+    const [Imagem,setImagem] = useState("https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/2427/no-image.png")
+    useEffect(() => {
+      if (data.imagem_produto !== null) {
+        setImagem(data.imagem_produto)
+      }
+    }, [])
     function remover(data,index){
         Alert.alert(
             "Remover o produto?",
@@ -36,7 +42,7 @@ export default function CartCata({data,index}) {
                 </View>
                 <View>
                     
-                    <Image source={require('../../../img/comidinhas.jpg')} style={{width:width/4, height:height/8, borderRadius:15,}}/>
+                <Image source={{uri:Imagem}}  resizeMode="cover" style={{width:width/4, height:height/8, borderRadius:15,}}/>
                 </View>
                 
             </TouchableOpacity>

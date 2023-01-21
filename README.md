@@ -18,8 +18,12 @@ https://www.figma.com/file/NOt8dIDNFto56nXN5hHOlI/TCC-Projeto?node-id=0%3A1&t=BS
 
 Tela de login
 ![Tela Login](https://i.imgur.com/A5xUGxJ.png)
+
+
 Tela inicial do usuario
 ![Tela Usuario](https://i.imgur.com/QAg6wic.png)
+
+
 Tela inicial do fornecedor
 ![Tela fornecedor](https://i.imgur.com/dNGQzAj.png)
 

@@ -3,7 +3,7 @@
 
 TCC realizado para formação do curso de sistemas de informação da UNIP Rangel, consiste em um indexador de fornecedores de diversas areas sobre festas infantil, de forma facilitar aos país a pesquisa e contato cliente fornecedor.
 
-Esse foi meu primeiro projeto real no react native, projeto esse que evolui muito ao seu decorrer, nele utilizei conceitos como async/await, promise, consumo de api, context.
+Esse foi meu primeiro projeto real no React Native, projeto esse que evolui muito ao seu decorrer, nele utilizei conceitos como async/await, promise, consumo de api, context.
 
 O React foi formulado por mim.
 Ja o back-end, se encontra por outro git, e foi formulado por outro integrante do grupo.
